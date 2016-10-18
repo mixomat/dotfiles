@@ -1,0 +1,37 @@
+
+function calc() {
+  awk "BEGIN {print $* ; }"
+}
+
+function dockadd () {
+  defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>";
+  osascript -e "tell application \"Dock\" to quit"
+}
+
+function git-root {
+  root=$(git rev-parse --git-dir 2> /dev/null)
+  [[ -z "$root" ]] && root="."
+  dirname $root
+}
+
+
+function pman {
+   man -t "${1}" | open -f -a /Applications/Preview.app
+}
+
+function proxy_switch {
+  if [ -f "/usr/sbin/scselect" ]; then
+    export LOCATION=$(/usr/sbin/scselect 2>&1 | perl -ne 'if (m/^\s+\*\s+(\S+)\s+\((.+)\)$/) { print "$2\n"; }')
+  fi
+
+  if [ ! -z "$LOCATION" -a "$LOCATION" = "bmw" ]; then
+    export http_proxy="http://qxe2757:cho3shew@proxy.muc:8080"
+	export https_proxy=$http_proxy
+    export ALL_PROXY=$http_proxy
+	export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,.bmwgroup.net,.muc"
+  else
+    unset ALL_PROXY
+    unset http_proxy
+	unset no_proxy
+  fi
+}

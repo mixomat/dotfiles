@@ -1,0 +1,45 @@
+
+# java env
+export JAVA_6_HOME="/Library/Java/JavaVirtualMachines/1.6.0_33-b03-424.jdk/Contents/Home"
+export JAVA_7_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home"
+export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home"
+export JAVA_HOME=${JAVA_8_HOME}
+
+# maven env
+export M3_HOME="/usr/local/Cellar/maven/3.3.3"
+export MAVEN_OPTS="-Djavax.net.ssl.keyStore=NONE -Djavax.net.ssl.keyStoreType=KeychainStore -Djavax.net.ssl.keyStorePassword=- -Djavax.net.ssl.trustStore=/Users/marc/projects/certs/Common/onewebuxp-truststore.jks"
+
+#glassfish
+export USP_DEV_HOME="/Users/marc/projects/java/USP/Develop"
+#export GLASSFISH_HOME="${USP_DEV_HOME}/glassfish3/glassfish"
+export GLASSFISH_HOME="/Users/marc/projects/appserver/glassfish3/glassfish"
+export IDEA_JDK=$JAVA_HOME
+
+#android
+export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
+
+# node.js
+export NODE_PATH="/usr/local/lib/node_modules"
+
+# vert.x
+export VERTX_HOME="/Users/marc/projects/sdks/vert.x-2.1RC3"
+
+# ruby
+export RBENV_ROOT=/usr/local/var/rbenv
+
+# docker
+export DOCKER_SCRIPT_PATH="/Users/marc/projects/docker/docker-scripts"
+
+# shell env
+export PATH="/Users/marc/.chefdk/gem/ruby/2.1.0/bin:/usr/local/bin:/opt/jad/bin:${M3_HOME}/bin:${PATH}:./bin:~/bin:${HOME}/projects/scripts.git:${GLASSFISH_HOME}/bin:/usr/local/share/npm/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:${VERTX_HOME}/bin:${ANDROID_HOME}/platform-tools:${DOCKER_SCRIPT_PATH}"
+export MANPATH="/opt/local/share/man:${MANPATH}"
+export INPUTRC="/etc/inputrc"
+export IRCNICK="|o_0|"
+export IRCUSER="spin"
+export IRCNAME="spin"
+export EDITOR='/usr/bin/vim'
+export HISTCONTROL='ignoredups'
+export GHCRTS='-K32m'
+export PAGER='less'
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"

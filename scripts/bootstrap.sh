@@ -19,14 +19,18 @@ create_symlinks() {
 
     declare -a FILES_TO_SYMLINK=(
 
+        "shell/bash_aliases"
+        "shell/bash_exports"
+        "shell/bash_functions"
         "shell/bash_profile"
+        "shell/bash_prompt"
         "shell/bashrc"
         "shell/inputrc"
 
         "git/git_completion"
         "git/gitconfig"
         "git/gitignore"
-#
+#TODO
 #        "tmux/tmux.conf"
 #
 #        "vim/vim"
