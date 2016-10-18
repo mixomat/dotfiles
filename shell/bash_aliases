@@ -35,3 +35,10 @@ alias adb='/Users/marc/projects/sdks/android-sdk/platform-tools/adb'
 alias d='docker'
 alias dm='docker-machine'
 alias dcom='docker-compose'
+alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
+
+# brew
+alias brewu="brew update \
+                && brew upgrade \
+                && brew cleanup \
+                && brew cask cleanup"
