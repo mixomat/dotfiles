@@ -22,7 +22,6 @@ brew upgrade --all
 
 # Install the Homebrew packages
 apps=(
-    rvm
     nvm
     bash-completion2
     coreutils
