@@ -1,0 +1,196 @@
+alias ..='cd ..'
+alias ...='cd ../..'
+alias ....="cd ../../.."
+alias cd..="cd .."
+alias :q="exit"
+alias c='clear'
+alias t='tar xfv'
+alias tj='tar xfjv'
+alias tz='tar xfzv'
+alias s='screen -r'
+alias l='less'
+alias ls='ls -G'
+alias screen='screen -l'
+alias df='df -h'
+alias log='tail -f /var/log/system.log'
+alias su='su --login'
+alias psg='ps wwwwaux | grep'
+alias fwlog='tail -f /var/log/ipfw.log'
+alias vim='mvim -v'
+alias v='vim'
+alias bx='BitchX'
+alias pwgen="pwgen -cn --alt-phonics"
+alias M='svn diff'
+alias G='svn diff'
+alias C='see'
+alias g='git'
+alias reboot='sudo /sbin/reboot'
+alias nmap='sudo nmap -sS -P0'
+alias wireshark='sudo wireshark'
+alias ipfw='sudo ipfw'
+alias flushdns="dscacheutil -flushcache"
+alias top='top -R -F -s 2 -o cpu'
+alias digall='dig +nocmd +multiline +noall +answer'
+alias sshx='ssh -p 4365'
+alias adb='/Users/marc/projects/sdks/android-sdk/platform-tools/adb'
+alias d='docker'
+alias dm='docker-machine'
+alias dcom='docker-compose'
+
+umask 022
+
+# java env
+export JAVA_6_HOME="/Library/Java/JavaVirtualMachines/1.6.0_33-b03-424.jdk/Contents/Home"
+export JAVA_7_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home"
+export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home"
+export JAVA_HOME=${JAVA_8_HOME}
+
+# maven env
+export M3_HOME="/usr/local/Cellar/maven/3.3.3"
+export MAVEN_OPTS="-Djavax.net.ssl.keyStore=NONE -Djavax.net.ssl.keyStoreType=KeychainStore -Djavax.net.ssl.keyStorePassword=- -Djavax.net.ssl.trustStore=/Users/marc/projects/certs/Common/onewebuxp-truststore.jks"
+
+#glassfish
+export USP_DEV_HOME="/Users/marc/projects/java/USP/Develop"
+#export GLASSFISH_HOME="${USP_DEV_HOME}/glassfish3/glassfish"
+export GLASSFISH_HOME="/Users/marc/projects/appserver/glassfish3/glassfish"
+export IDEA_JDK=$JAVA_HOME
+
+#android
+export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
+
+# node.js
+export NODE_PATH="/usr/local/lib/node_modules"
+
+# vert.x
+export VERTX_HOME="/Users/marc/projects/sdks/vert.x-2.1RC3"
+
+# ruby
+export RBENV_ROOT=/usr/local/var/rbenv
+
+# docker
+export DOCKER_SCRIPT_PATH="/Users/marc/projects/docker/docker-scripts"
+
+# shell env
+export PATH="/Users/marc/.chefdk/gem/ruby/2.1.0/bin:/usr/local/bin:/opt/jad/bin:${M3_HOME}/bin:${PATH}:./bin:~/bin:${HOME}/projects/scripts.git:${GLASSFISH_HOME}/bin:/usr/local/share/npm/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:${VERTX_HOME}/bin:${ANDROID_HOME}/platform-tools:${DOCKER_SCRIPT_PATH}"
+export MANPATH="/opt/local/share/man:${MANPATH}"
+export INPUTRC="/etc/inputrc"
+export IRCNICK="|o_0|"
+export IRCUSER="spin"
+export IRCNAME="spin"
+export EDITOR='/usr/bin/vim'
+export HISTCONTROL='ignoredups'
+export GHCRTS='-K32m'
+export PAGER='less'
+export LANG="en_US.UTF-8"
+export LC_ALL="en_US.UTF-8"
+
+## Colors
+export LSCOLORS=hxfxcxdxbxegedabagHxHx
+
+       RED="\[\033[0;31m\]"
+      PINK="\[\033[1;31m\]"
+    YELLOW="\[\033[1;33m\]"
+     GREEN="\[\033[0;32m\]"
+  LT_GREEN="\[\033[1;32m\]"
+      BLUE="\[\033[0;34m\]"
+     WHITE="\[\033[1;37m\]"
+    PURPLE="\[\033[1;35m\]"
+      CYAN="\[\033[1;36m\]"
+     BROWN="\[\033[0;33m\]"
+COLOR_NONE="\[\033[0m\]"
+
+LIGHTNING_BOLT="⚡"
+      UP_ARROW="↑"
+    DOWN_ARROW="↓"
+      UD_ARROW="↕"
+      FF_ARROW="→"
+       RECYCLE="♺"
+        MIDDOT="•"
+     PLUSMINUS="±"
+
+export PS1='\h:\w\[\e[32;1m\]$(__git_ps1 " (%s)")\[\033[1;33m\]⚡  \[\033[0m\]'
+
+
+# shell completion 
+for comp in \
+    ~/.git_completion
+do
+    [[ -e $comp ]] && source $comp
+done
+
+# handy functions
+function calc() { 
+  awk "BEGIN {print $* ; }"
+}
+
+function dockadd () {
+  defaults write com.apple.dock persistent-apps -array-add "<dict><key>tile-data</key><dict><key>file-data</key><dict><key>_CFURLString</key><string>$1</string><key>_CFURLStringType</key><integer>0</integer></dict></dict></dict>";
+  osascript -e "tell application \"Dock\" to quit"
+}
+
+function git-root {
+  root=$(git rev-parse --git-dir 2> /dev/null)
+  [[ -z "$root" ]] && root="."
+  dirname $root
+}
+
+
+function pman {
+   man -t "${1}" | open -f -a /Applications/Preview.app
+}
+
+function proxy_switch {
+  if [ -f "/usr/sbin/scselect" ]; then
+    export LOCATION=$(/usr/sbin/scselect 2>&1 | perl -ne 'if (m/^\s+\*\s+(\S+)\s+\((.+)\)$/) { print "$2\n"; }')
+  fi 
+
+  if [ ! -z "$LOCATION" -a "$LOCATION" = "bmw" ]; then
+    export http_proxy="http://qxe2757:cho3shew@proxy.muc:8080"
+	export https_proxy=$http_proxy
+    export ALL_PROXY=$http_proxy
+	export no_proxy="localhost,127.0.0.1,localaddress,.localdomain.com,.bmwgroup.net,.muc"
+  else
+    unset ALL_PROXY
+    unset http_proxy
+	unset no_proxy
+  fi
+}
+
+# allianz setup
+function az_old () {
+	export JAVA_HOME=${JAVA_8_HOME}
+	export AZ_ONEWEB="true"
+	export VAGRANT_PTC="/Users/marc/Desktop/oneWeb/certs/Marc_Weinberger"
+	export SDK_WORKSPACE="/Users/marc/projects/az"
+	export npm_config_cert="$(cat /Users/marc/projects/certs/de-amos_extern-marc_weinberger.crt)"
+	export npm_config_key="$(cat /Users/marc/projects/certs/de-amos_extern-marc_weinberger.key)"
+	brew unlink maven
+	brew link maven30
+	echo -ne "\033]0;"az_old"\007"
+}
+
+function az() {
+	export JAVA_HOME=${JAVA_8_HOME}
+	export AZ_ONEWEB="true"
+	export VAGRANT_PTC="/Users/marc/Desktop/oneWeb/certs/Marc_Weinberger"
+	export SDK_WORKSPACE="/Users/marc/projects/az"
+	export npm_config_cert="$(cat /Users/marc/projects/certs/de-amos_extern-marc_weinberger.crt)"
+	export npm_config_key="$(cat /Users/marc/projects/certs/de-amos_extern-marc_weinberger.key)"
+	echo -ne "\033]0;"az"\007"
+}
+
+function noaz () {
+	brew unlink maven30
+	brew link maven
+	unset AZ_ONEWEB
+	export JAVA_HOME=${JAVA_8_HOME}
+}
+
+# rbenv setup
+if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
+
+# bash completion
+if [ -f $(brew --prefix)/etc/bash_completion ]; then
+	. $(brew --prefix)/etc/bash_completion
+fi
+
