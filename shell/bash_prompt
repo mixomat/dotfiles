@@ -52,7 +52,7 @@ prompt_git() {
 
 		[ -n "${s}" ] && s=" [${s}]";
 
-		echo -e "${1}${branchName}${red}${s}";
+		echo -e "${1}${branchName}${blue}${s}";
 	else
 		return;
 	fi;
