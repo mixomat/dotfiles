@@ -1,5 +1,15 @@
-# mixomat's dotfiles
+# Dotfiles (Marc Weinberger)
 
-I maintain this repo as my personal dotfiles. 
+My OS X dotfiles.
 
-If you're starting off with dotfiles, consider forking [mathias](https://github.com/mathiasbynens/dotfiles/), [alrra](https://github.com/alrra/dotfiles/). [paulmillr](https://github.com/paulmillr/dotfiles) or [gf3](https://github.com/gf3/dotfiles).
+
+## Acknowledgements
+
+Inspiration and code was taken from many sources, including:
+
+* [@alrra](https://github.com/alrra) (Cãtãlin Mariş)
+  [https://github.com/alrra/dotfiles](https://github.com/alrra/dotfiles)
+* [@mathiasbynens](https://github.com/mathiasbynens) (Mathias Bynens)
+  [https://github.com/mathiasbynens/dotfiles](https://github.com/mathiasbynens/dotfiles)
+* [@necolas](https://github.com/necolas) (Nicolas Gallagher)
+  [https://github.com/necolas/dotfiles](https://github.com/necolas/dotfiles)
