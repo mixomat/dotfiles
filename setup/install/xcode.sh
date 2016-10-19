@@ -80,10 +80,15 @@ main() {
 
     print_in_purple "\n • Xcode\n\n"
 
-    install_xcode_command_line_tools
-    install_xcode
-    set_xcode_developer_directory
-    agree_with_xcode_licence
+    ask_for_confirmation "Should I install Xcode and Command line tools"
+    if answer_is_yes; then
+        install_xcode_command_line_tools
+        install_xcode
+        set_xcode_developer_directory
+        agree_with_xcode_licence
+    else
+        print_warning "Skipping Xcode installation"
+    fi
 
 }
 

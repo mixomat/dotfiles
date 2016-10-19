@@ -50,14 +50,19 @@ brew_cleanup() {
 main() {
     print_in_purple "\n • Homebrew\n\n"
 
-    install_homebrew
+    ask_for_confirmation "Should I install and update Homebrew?"
+    if answer_is_yes; then
+        install_homebrew
 
-    brew_update
-    brew_upgrade
+        brew_update
+        brew_upgrade
 
-    brew_bundle_install
+        brew_bundle_install
+        brew_cleanup
+    else
+        print_warning "Skipping Homebrew installation"
+    fi
 
-    brew_cleanup
 }
 
 main
