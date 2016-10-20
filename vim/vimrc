@@ -1,0 +1,39 @@
+set nocompatible
+set encoding=utf-8
+
+" enable syntax highlighting
+syntax enable
+
+" ensure ftdetect et al work by including this after the Vundle stuff
+filetype plugin indent on
+
+set autoread
+set backspace=2
+set backupcopy=yes
+set clipboard=unnamed
+set directory-=.
+set laststatus=2
+set number
+set ruler
+set wildmenu
+
+" natural split opening
+set splitbelow
+set splitright
+
+" indent with 2 spaces
+set autoindent
+set expandtab
+set shiftwidth=2
+set softtabstop=2
+
+" keyboard shortcuts
+let mapleader=" "
+map <leader>s :source ~/.vimrc<CR>
+
+" remap split navigation keys
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+nnoremap <Tab> <C-P>

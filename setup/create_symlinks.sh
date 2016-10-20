@@ -18,7 +18,6 @@ declare symlinkDirectory="$HOME"
 create_symlinks() {
 
     declare -a FILES_TO_SYMLINK=(
-
         "shell/bash_aliases"
         "shell/bash_exports"
         "shell/bash_functions"
@@ -29,10 +28,9 @@ create_symlinks() {
 
         "git/gitconfig"
         "git/gitignore"
-#TODO
-#        "vim/vim"
-#        "vim/vimrc"
 
+        "vim/vim"
+        "vim/vimrc"
     )
 
     local i=""
