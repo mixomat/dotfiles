@@ -1,19 +1,16 @@
-
 # java env
 export JAVA_6_HOME="/Library/Java/JavaVirtualMachines/1.6.0_33-b03-424.jdk/Contents/Home"
 export JAVA_7_HOME="/Library/Java/JavaVirtualMachines/jdk1.7.0_67.jdk/Contents/Home"
 export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_92.jdk/Contents/Home"
 export JAVA_HOME=${JAVA_8_HOME}
+export IDEA_JDK=$JAVA_HOME
 
 # maven env
 export M3_HOME="/usr/local/Cellar/maven/3.3.3"
 export MAVEN_OPTS="-Djavax.net.ssl.keyStore=NONE -Djavax.net.ssl.keyStoreType=KeychainStore -Djavax.net.ssl.keyStorePassword=- -Djavax.net.ssl.trustStore=/Users/marc/projects/certs/Common/onewebuxp-truststore.jks"
 
 #glassfish
-export USP_DEV_HOME="/Users/marc/projects/java/USP/Develop"
-#export GLASSFISH_HOME="${USP_DEV_HOME}/glassfish3/glassfish"
 export GLASSFISH_HOME="/Users/marc/projects/appserver/glassfish3/glassfish"
-export IDEA_JDK=$JAVA_HOME
 
 #android
 export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
@@ -32,18 +29,12 @@ JAD_PATH="/opt/jad/bin"
 SCRIPTS_PATH="/Users/marc/projects/scripts.git"
 DOCKER_SCRIPT_PATH="/Users/marc/projects/docker/docker-scripts"
 XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
-
 export PATH="/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${JAD_PATH}:${XCODE_PATH}:${DOCKER_SCRIPT_PATH}"
 
-# shell env
+# misc env
 export MANPATH="/opt/local/share/man:${MANPATH}"
-export INPUTRC="/etc/inputrc"
-export IRCNICK="|o_0|"
-export IRCUSER="spin"
-export IRCNAME="spin"
-export EDITOR='/usr/bin/vim'
+export EDITOR='/usr/local/bin/vim'
 export HISTCONTROL='ignoredups'
-export GHCRTS='-K32m'
 export PAGER='less'
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
