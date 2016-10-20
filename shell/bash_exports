@@ -27,11 +27,15 @@ export VERTX_HOME="/Users/marc/projects/sdks/vert.x-2.1RC3"
 # ruby
 export RBENV_ROOT=/usr/local/var/rbenv
 
-# docker
-export DOCKER_SCRIPT_PATH="/Users/marc/projects/docker/docker-scripts"
+# paths
+JAD_PATH="/opt/jad/bin"
+SCRIPTS_PATH="/Users/marc/projects/scripts.git"
+DOCKER_SCRIPT_PATH="/Users/marc/projects/docker/docker-scripts"
+XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
+
+export PATH="/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${JAD_PATH}:${XCODE_PATH}:${DOCKER_SCRIPT_PATH}"
 
 # shell env
-export PATH="/Users/marc/.chefdk/gem/ruby/2.1.0/bin:/usr/local/bin:/opt/jad/bin:${M3_HOME}/bin:${PATH}:./bin:~/bin:${HOME}/projects/scripts.git:${GLASSFISH_HOME}/bin:/usr/local/share/npm/bin:/Applications/Xcode.app/Contents/Developer/usr/bin:${VERTX_HOME}/bin:${ANDROID_HOME}/platform-tools:${DOCKER_SCRIPT_PATH}"
 export MANPATH="/opt/local/share/man:${MANPATH}"
 export INPUTRC="/etc/inputrc"
 export IRCNICK="|o_0|"
