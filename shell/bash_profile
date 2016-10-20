@@ -6,14 +6,6 @@ for file in ~/.{bash_aliases,bash_exports,bash_prompt,bash_functions}; do
 done
 unset file
 
-
-# shell completion 
-for comp in \
-    ~/.git_completion
-do
-    [[ -e $comp ]] && source $comp
-done
-
 # bash completion
 if [ -f $(brew --prefix)/etc/bash_completion ]; then
 	. $(brew --prefix)/etc/bash_completion

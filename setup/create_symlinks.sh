@@ -27,12 +27,9 @@ create_symlinks() {
         "shell/bashrc"
         "shell/inputrc"
 
-        "git/git_completion"
         "git/gitconfig"
         "git/gitignore"
 #TODO
-#        "tmux/tmux.conf"
-#
 #        "vim/vim"
 #        "vim/vimrc"
 
