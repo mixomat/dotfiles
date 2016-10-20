@@ -9,10 +9,10 @@ export IDEA_JDK=$JAVA_HOME
 export M3_HOME="/usr/local/Cellar/maven/3.3.3"
 export MAVEN_OPTS="-Djavax.net.ssl.keyStore=NONE -Djavax.net.ssl.keyStoreType=KeychainStore -Djavax.net.ssl.keyStorePassword=- -Djavax.net.ssl.trustStore=/Users/marc/projects/certs/Common/onewebuxp-truststore.jks"
 
-#glassfish
+# glassfish
 export GLASSFISH_HOME="/Users/marc/projects/appserver/glassfish3/glassfish"
 
-#android
+# android
 export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
 
 # node.js
