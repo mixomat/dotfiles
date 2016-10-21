@@ -17,6 +17,7 @@ main() {
 
     ./install/brew.sh
     ./install/xcode.sh
+    ./install/vim.sh
 }
 
 main

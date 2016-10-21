@@ -1,2 +1,5 @@
 .idea
 *.iml
+vim/vim/backups
+vim/vim/swaps
+vim/vim/plugged

@@ -1,21 +1,34 @@
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" General settings
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 set nocompatible
 set encoding=utf-8
 
-" enable syntax highlighting
-syntax enable
-
-" ensure ftdetect et al work by including this after the Vundle stuff
 filetype plugin indent on
 
 set autoread
 set backspace=2
-set backupcopy=yes
 set clipboard=unnamed
-set directory-=.
 set laststatus=2
+
+set directory=~/.vim/swaps
+set backupdir=~/.vim/backups
+set backupskip=/tmp/*
+set backupskip+=/private/tmp/* 
+
 set number
+set numberwidth=5
 set ruler
+set scrolloff=3
+
 set wildmenu
+set wildmode=longest,list:longest
+
+" highlight searching
+set hlsearch
+set ignorecase
+set incsearch
 
 " natural split opening
 set splitbelow
@@ -27,13 +40,46 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" keyboard shortcuts
-let mapleader=" "
-map <leader>s :source ~/.vimrc<CR>
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" Plugins
 
-" remap split navigation keys
+call plug#begin()
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/nerdtree'
+Plug 'scrooloose/syntastic'
+Plug 'elzr/vim-json'
+call plug#end()
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" Color scheme
+
+syntax enable
+set background=dark
+colorscheme solarized
+
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" Keyboard shortcuts
+
+let mapleader=" "
+
+" [ s] Source vimrc
+map <leader>s :source ~/.vimrc<CR>
+" [ cs] Clear search
+map <leader>cs <Esc>:noh<CR>
+" [ t] Toggle NERDTree
+map <leader>t :NERDTreeToggle<CR>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" Remap split navigation keys
+
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 nnoremap <Tab> <C-P>
+
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" NERDTree settings
+
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
