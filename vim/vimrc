@@ -1,7 +1,6 @@
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " General settings
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-
 set nocompatible
 set encoding=utf-8
 
@@ -18,8 +17,8 @@ set backupskip=/tmp/*
 set backupskip+=/private/tmp/* 
 
 set number
-set numberwidth=5
 set ruler
+set numberwidth=5
 set scrolloff=3
 
 set wildmenu
@@ -47,6 +46,7 @@ call plug#begin()
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
+Plug 'leafgarland/typescript-vim'
 Plug 'elzr/vim-json'
 call plug#end()
 
@@ -56,7 +56,6 @@ call plug#end()
 syntax enable
 set background=dark
 colorscheme solarized
-
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " Keyboard shortcuts
@@ -83,3 +82,4 @@ nnoremap <Tab> <C-P>
 " NERDTree settings
 
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
