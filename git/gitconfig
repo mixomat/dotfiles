@@ -15,6 +15,7 @@
 	autocrlf = input
 [alias]
 	ci = commit
+        co = checkout
 	st = status
 	unstage = reset HEAD --
 	last = log -1 HEAD
