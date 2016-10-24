@@ -39,6 +39,10 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
+" text width
+set textwidth=80
+set colorcolumn=+1
+
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " Plugins
 
@@ -48,6 +52,7 @@ Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'leafgarland/typescript-vim'
 Plug 'elzr/vim-json'
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -55,6 +60,7 @@ call plug#end()
 
 syntax enable
 set background=dark
+let g:solarized_contrast="high"
 colorscheme solarized
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -81,5 +87,9 @@ nnoremap <Tab> <C-P>
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " NERDTree settings
 
+" Close NERDTree when closing last tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
+" Open NERDTree when in folder mode
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
