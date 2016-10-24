@@ -74,6 +74,8 @@ map <leader>s :source ~/.vimrc<CR>
 map <leader>cs <Esc>:noh<CR>
 " [ t] Toggle NERDTree
 map <leader>t :NERDTreeToggle<CR>
+" [ s] Execut current file from shell
+nnoremap <leader>r :!%:p
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " Remap split navigation keys
