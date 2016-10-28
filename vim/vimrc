@@ -43,6 +43,11 @@ set softtabstop=2
 set textwidth=80
 set colorcolumn=+1
 
+" mouse support
+if has('mouse')
+    set mouse=a
+endif
+
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " Plugins
 
