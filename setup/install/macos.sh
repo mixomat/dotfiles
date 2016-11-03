@@ -20,6 +20,9 @@ for domain in ~/Library/Preferences/ByHost/com.apple.systemuiserver.*; do
                   "/System/Library/CoreServices/Menu Extras/User.menu"
 done
 
+# disable timemachine local backups
+sudo tmutil disablelocal
+
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 

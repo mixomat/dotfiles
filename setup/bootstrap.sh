@@ -15,6 +15,7 @@ main() {
 
     ./create_symlinks.sh
 
+    ./install/node.sh
     ./install/brew.sh
     ./install/xcode.sh
     ./install/vim.sh

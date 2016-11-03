@@ -31,6 +31,8 @@ create_symlinks() {
 
         "vim/vim"
         "vim/vimrc"
+
+        "misc/czrc"
     )
 
     local i=""
