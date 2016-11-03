@@ -16,7 +16,6 @@ alias log='tail -f /var/log/system.log'
 alias su='su --login'
 alias psg='ps wwwwaux | grep'
 alias fwlog='tail -f /var/log/ipfw.log'
-alias vim='mvim -v'
 alias v='vim'
 alias bx='BitchX'
 alias pwgen="pwgen -cn --alt-phonics"
