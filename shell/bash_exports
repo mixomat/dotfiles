@@ -25,11 +25,9 @@ export VERTX_HOME="/Users/marc/projects/sdks/vert.x-2.1RC3"
 export RBENV_ROOT=/usr/local/var/rbenv
 
 # paths
-JAD_PATH="/opt/jad/bin"
-SCRIPTS_PATH="/Users/marc/projects/scripts.git"
-DOCKER_SCRIPT_PATH="/Users/marc/projects/docker/docker-scripts"
+SCRIPTS_PATH="/Users/marc/projects/scripts"
 XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
-export PATH="/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${JAD_PATH}:${XCODE_PATH}:${DOCKER_SCRIPT_PATH}"
+export PATH="/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}"
 
 # misc env
 export MANPATH="/opt/local/share/man:${MANPATH}"
