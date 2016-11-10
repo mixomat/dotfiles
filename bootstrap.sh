@@ -13,12 +13,12 @@ main() {
 
     ask_for_sudo
 
-    ./create_symlinks.sh
+    ./setup/symlinks.sh
 
-    ./install/node.sh
-    ./install/brew.sh
-    ./install/xcode.sh
-    ./install/vim.sh
+    ./setup/node.sh
+    ./setup/brew.sh
+    ./setup/xcode.sh
+    ./setup/vim.sh
 }
 
 main
