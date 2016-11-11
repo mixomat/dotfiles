@@ -1,4 +1,5 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =2
+let g:netrw_dirhist_cnt =3
 let g:netrw_dirhist_1='/Users/marc/dotfiles/vim/vim/autoload'
 let g:netrw_dirhist_2='/Users/marc/projects/ayfie/docker-demos/compositions/altep/elasticsearch.yml'
+let g:netrw_dirhist_3='/Users/marc/Library/Preferences/IntelliJIdea2016.1/codestyles'

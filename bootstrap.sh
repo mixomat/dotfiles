@@ -6,7 +6,7 @@
 #   https://github.com/alrra/dotfiles/blob/master/src/os/setup.sh
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "./utils.sh"
+    && . "./setup/utils.sh"
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 main() {
