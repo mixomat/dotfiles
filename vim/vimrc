@@ -44,9 +44,9 @@ set textwidth=80
 set colorcolumn=+1
 
 " mouse support
-if has('mouse')
-    set mouse=a
-endif
+set mouse=a
+set ttyfast
+set ttymouse=xterm2
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " Plugins
@@ -82,7 +82,7 @@ map <leader>s :source ~/.vimrc<CR>
 map <leader>cs <Esc>:noh<CR>
 " [ t] Toggle NERDTree
 map <leader>t :NERDTreeToggle<CR>
-" [ s] Execut current file from shell
+" [ r] Execute current file from shell
 nnoremap <leader>r :!%:p
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
