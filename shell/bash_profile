@@ -14,4 +14,9 @@ fi
 # rbenv setup
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
+# nvm setup
+if [ -f $(brew --prefix)/opt/nvm/nvm.sh ]; then
+	. $(brew --prefix)/opt/nvm/nvm.sh
+fi
+
 clear

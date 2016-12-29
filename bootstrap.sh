@@ -15,9 +15,9 @@ main() {
 
     ./setup/symlinks.sh
 
+    ./setup/xcode.sh
     ./setup/node.sh
     ./setup/brew.sh
-    ./setup/xcode.sh
     ./setup/vim.sh
 }
 
