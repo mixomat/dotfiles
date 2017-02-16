@@ -20,6 +20,7 @@
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
+	d = difftool
 [push]
 	default = simple
 [filter "media"]
@@ -32,3 +33,7 @@
 	required = true
 [credential]
 	helper = osxkeychain
+[diff]
+	tool = vimdiff
+[difftool]
+	prompt = false
