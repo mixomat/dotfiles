@@ -43,3 +43,6 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 alias path='echo -e ${PATH//:/\\n}'
 alias push='git push'
 alias pull='git pull -r'
+alias ayfieplatform="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
+alias ayfiecqrc="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml"
+alias ayfieperf="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-perf.yml -p performance"
