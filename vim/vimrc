@@ -39,9 +39,10 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" text width
-set textwidth=80
-set colorcolumn=+1
+" line wrapping 
+set wrap
+set linebreak
+set nolist
 
 " mouse support
 set mouse=a
