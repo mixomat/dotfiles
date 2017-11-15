@@ -19,4 +19,12 @@ if [ -f $(brew --prefix)/opt/nvm/nvm.sh ]; then
 	. $(brew --prefix)/opt/nvm/nvm.sh
 fi
 
+# gcloud setup
+if [ -f '/Users/marc/projects/dks/google-cloud-sdk/path.bash.inc' ]; then 
+  source '/Users/marc/projects/dks/google-cloud-sdk/path.bash.inc'; 
+fi
+if [ -f '/Users/marc/projects/dks/google-cloud-sdk/completion.bash.inc' ]; then
+  source '/Users/marc/projects/dks/google-cloud-sdk/completion.bash.inc'; 
+fi
+
 clear

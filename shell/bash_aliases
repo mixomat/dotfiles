@@ -35,6 +35,7 @@ alias adb='/Users/marc/projects/sdks/android-sdk/platform-tools/adb'
 alias d='docker'
 alias dm='docker-machine'
 alias dcom='docker-compose'
+alias dockerscreen='screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty'
 alias week='date +%V'
 alias brewu="brew update && brew upgrade && brew cleanup && brew cask cleanup"
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -44,5 +45,10 @@ alias path='echo -e ${PATH//:/\\n}'
 alias push='git push'
 alias pull='git pull -r'
 alias ayfieplatform="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
+alias ayfieplatformlatest="docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
 alias ayfiecqrc="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml"
 alias ayfieperf="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-perf.yml -p performance"
+alias cvmaker="docker-compose -f ~/projects/java/cvmaker/docker-compose.yml"
+alias cvmakerdev="docker-compose -f ~/projects/java/cvmaker/docker-compose-dev.yml"
+alias feeder_update='docker pull quay.io/ayfie/feeder:latest'
+alias feeder='docker run --rm --net=host -v "$PWD":/wd --workdir /wd quay.io/ayfie/feeder:latest'
