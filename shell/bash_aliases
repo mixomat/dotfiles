@@ -23,6 +23,7 @@ alias M='svn diff'
 alias G='svn diff'
 alias C='see'
 alias g='git'
+alias gl='glances'
 alias reboot='sudo /sbin/reboot'
 alias nmap='sudo nmap -sS -P0'
 alias wireshark='sudo wireshark'
@@ -35,6 +36,7 @@ alias adb='/Users/marc/projects/sdks/android-sdk/platform-tools/adb'
 alias d='docker'
 alias dm='docker-machine'
 alias dcom='docker-compose'
+alias k='kubectl'
 alias dockerscreen='screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty'
 alias week='date +%V'
 alias brewu="brew update && brew upgrade && brew cleanup && brew cask cleanup"
@@ -47,12 +49,15 @@ alias pull='git pull -r'
 # ayfie docker
 alias ayfieplatform="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
 alias ayfieplatformlatest="docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
-alias ayfiecqrc="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml"
+alias ayfiecqrc="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml"
+alias ayfiecqrclatest="AYFIE_LOGLEVEL=debug docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-monitoring.yml"
 alias ayfieperf="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-perf.yml -p performance"
-alias cvmaker="docker-compose -f ~/projects/java/cvmaker/docker-compose.yml"
-alias cvmakerdev="docker-compose -f ~/projects/java/cvmaker/docker-compose-dev.yml"
+alias cvmaker="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose.yml"
+alias cvmakerdev="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose-dev.yml"
 alias feeder_update='docker pull quay.io/ayfie/feeder:latest'
 alias feeder='docker run --rm --net=host -v "$PWD":/wd --workdir /wd quay.io/ayfie/feeder:latest'
 # sistrix docker
-alias crawlermaster="docker-compose -f ~/projects/sistrix/linkdb-api/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose.yml"
-alias crawleragent="HOST_HOSTNAME=$HOSTNAME RABBITMQ_HOST=docker.for.mac.host.internal docker-compose -f ~/projects/sistrix/linkdb-api/sistrix-crawler-aggregator/sistrix-crawler-agent/docker-compose-dev.yml"
+alias crawlermaster="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose.yml"
+alias crawlermasterdev="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose-dev.yml"
+alias crawleragent="HOST_HOSTNAME=$HOSTNAME RABBITMQ_HOST=docker.for.mac.host.internal docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-agent/docker-compose-dev.yml"
+alias linkdbapi="docker-compose -f ~/projects/sistrix/linkdb/api-server-aggregator/LinkDBAPIServer/docker-compose-dev.yml"
