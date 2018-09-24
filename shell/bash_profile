@@ -20,3 +20,7 @@ if [ -f $(brew --prefix)/opt/nvm/nvm.sh ]; then
 fi
 
 clear
+
+#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+export SDKMAN_DIR="/Users/marc/.sdkman"
+[[ -s "/Users/marc/.sdkman/bin/sdkman-init.sh" ]] && source "/Users/marc/.sdkman/bin/sdkman-init.sh"

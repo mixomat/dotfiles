@@ -20,7 +20,7 @@ export NVM_DIR="$HOME/.nvm"
 export VERTX_HOME="/Users/marc/projects/sdks/vert.x-2.1RC3"
 
 # spark
-export SPARK_HOME="/Users/marc/projects/sdks/spark-2.0.1-bin-hadoop2.7"
+export SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
 
 # ruby
 export RBENV_ROOT=/usr/local/var/rbenv

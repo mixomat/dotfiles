@@ -50,14 +50,16 @@ alias pull='git pull -r'
 alias ayfieplatform="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
 alias ayfieplatformlatest="docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
 alias ayfiecqrc="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml"
-alias ayfiecqrclatest="AYFIE_LOGLEVEL=debug docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-monitoring.yml"
+alias ayfiecqrclatest="AYFIE_LOGLEVEL=debug docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml"
+alias ayfiecqrcmonitoring="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-monitoring.yml"
 alias ayfieperf="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-perf.yml -p performance"
 alias cvmaker="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose.yml"
 alias cvmakerdev="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose-dev.yml"
 alias feeder_update='docker pull quay.io/ayfie/feeder:latest'
 alias feeder='docker run --rm --net=host -v "$PWD":/wd --workdir /wd quay.io/ayfie/feeder:latest'
 # sistrix docker
-alias crawlermaster="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose.yml"
-alias crawlermasterdev="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose-dev.yml"
-alias crawleragent="HOST_HOSTNAME=$HOSTNAME RABBITMQ_HOST=docker.for.mac.host.internal docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-agent/docker-compose-dev.yml"
-alias linkdbapi="docker-compose -f ~/projects/sistrix/linkdb/api-server-aggregator/LinkDBAPIServer/docker-compose-dev.yml"
+alias cm="~/projects/sistrix/linkdb/sistrix-crawler-aggregator/bin/cm"
+alias cm_dev="CRAWLER_MASTER_HOST=https://cm-dev.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/bin/cm"
+alias cm_prod="CRAWLER_MASTER_HOST=https://cm.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/bin/cm"
+alias crawlermaster="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose-dev.yml"
+alias crawleragent="CRAWLER_NAME=$HOSTNAME RABBITMQ_HOST=host.docker.internal SPRING_KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:9092 docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-agent/docker-compose-dev.yml"
