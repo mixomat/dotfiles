@@ -58,8 +58,8 @@ alias cvmakerdev="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose-de
 alias feeder_update='docker pull quay.io/ayfie/feeder:latest'
 alias feeder='docker run --rm --net=host -v "$PWD":/wd --workdir /wd quay.io/ayfie/feeder:latest'
 # sistrix docker
-alias cm="~/projects/sistrix/linkdb/sistrix-crawler-aggregator/bin/cm"
-alias cm_dev="CRAWLER_MASTER_HOST=https://cm-dev.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/bin/cm"
-alias cm_prod="CRAWLER_MASTER_HOST=https://cm.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/bin/cm"
+alias cm="~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
+alias cm_dev="CRAWLER_MASTER_HOST=https://cm-dev.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
+alias cm_prod="CRAWLER_MASTER_HOST=https://cm.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
 alias crawlermaster="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose-dev.yml"
 alias crawleragent="CRAWLER_NAME=$HOSTNAME RABBITMQ_HOST=host.docker.internal SPRING_KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:9092 docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-agent/docker-compose-dev.yml"
