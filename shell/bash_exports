@@ -1,15 +1,11 @@
 # java env
-export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/jdk1.8.0_152.jdk/Contents/Home"
+export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 export JAVA_10_HOME="/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home"
-export OPENJAVA_10_HOME="/Library/Java/JavaVirtualMachines/openjdk-10.0.2.jdk/Contents/Home"
 export JAVA_HOME=${JAVA_8_HOME}
 export IDEA_JDK=$JAVA_HOME
 
 # maven env
 export MAVEN_OPTS='-Xmx1024m'
-
-# glassfish
-export GLASSFISH_HOME="/Users/marc/projects/appserver/glassfish3/glassfish"
 
 # android
 export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
@@ -18,8 +14,9 @@ export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
 export NODE_PATH="/usr/local/lib/node_modules"
 export NVM_DIR="$HOME/.nvm"
 
-# vert.x
-export VERTX_HOME="/Users/marc/projects/sdks/vert.x-2.1RC3"
+# go
+export GOROOT="/usr/local/opt/go/libexec"
+export GOPATH="/Users/marc/projects/go"
 
 # spark
 export SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
@@ -30,7 +27,7 @@ export RBENV_ROOT=/usr/local/var/rbenv
 # paths
 SCRIPTS_PATH="/Users/marc/projects/scripts"
 XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
-export PATH="/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}"
+export PATH="/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin"
 
 # misc env
 export MANPATH="/opt/local/share/man:${MANPATH}"
@@ -39,4 +36,3 @@ export HISTCONTROL='ignoredups'
 export PAGER='less'
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
-

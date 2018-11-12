@@ -47,16 +47,12 @@ alias path='echo -e ${PATH//:/\\n}'
 alias push='git push'
 alias pull='git pull -r'
 # ayfie docker
-alias ayfieplatform="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
-alias ayfieplatformlatest="docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-system-test.yml"
-alias ayfiecqrc="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml"
-alias ayfiecqrclatest="AYFIE_LOGLEVEL=debug docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml"
-alias ayfiecqrcmonitoring="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting docker-compose -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-dev.yml -f ~/projects/ayfie/platform/deployments/cqrc/docker-compose-monitoring.yml"
-alias ayfieperf="AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-perf.yml -p performance"
-alias cvmaker="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose.yml"
-alias cvmakerdev="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose-dev.yml"
+alias ayfie="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/platform/smoke/docker-compose-smoke-test.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml"
 alias feeder_update='docker pull quay.io/ayfie/feeder:latest'
 alias feeder='docker run --rm --net=host -v "$PWD":/wd --workdir /wd quay.io/ayfie/feeder:latest'
+# cvmaker docker 
+alias cvmaker="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose.yml"
+alias cvmakerdev="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose-dev.yml"
 # sistrix docker
 alias cm="~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
 alias cm_dev="CRAWLER_MASTER_HOST=https://cm-dev.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
