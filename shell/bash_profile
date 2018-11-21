@@ -14,12 +14,10 @@ fi
 # rbenv setup
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 
-# nvm setup
-if [ -f $(brew --prefix)/opt/nvm/nvm.sh ]; then
-	. $(brew --prefix)/opt/nvm/nvm.sh
-fi
+# nodeenv setup
+if which nodenv > /dev/null; then eval "$(nodenv init -)"; fi
 
-clear
+#clear
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 export SDKMAN_DIR="/Users/marc/.sdkman"
