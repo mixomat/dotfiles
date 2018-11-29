@@ -47,7 +47,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias push='git push'
 alias pull='git pull -r'
 # ayfie docker
-alias ayfie="AYFIE_LOGLEVEL=debug AYFIE_IMAGE=platform ALERTING_IMAGE=alerting GATEWAY_IMAGE=gateway docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-alerting.yml -f ~/projects/ayfie/platform/deployments/platform/smoke/docker-compose-smoke-test.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml"
+alias ayfie="AYFIE_LOGLEVEL=debug docker-compose -f ~/projects/ayfie/platform/deployments/platform/docker-compose.yml -f ~/projects/ayfie/platform/deployments/platform/docker-compose-dev.yml"
 alias feeder_update='docker pull quay.io/ayfie/feeder:latest'
 alias feeder='docker run --rm --net=host -v "$PWD":/wd --workdir /wd quay.io/ayfie/feeder:latest'
 # cvmaker docker 
@@ -57,5 +57,5 @@ alias cvmakerdev="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose-de
 alias cm="~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
 alias cm_dev="CRAWLER_MASTER_HOST=https://cm-dev.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
 alias cm_prod="CRAWLER_MASTER_HOST=https://cm.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
-alias crawlermaster="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose-dev.yml"
+alias crawler="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose-dev.yml"
 alias crawleragent="CRAWLER_NAME=$HOSTNAME RABBITMQ_HOST=host.docker.internal SPRING_KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:9092 docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-agent/docker-compose-dev.yml"
