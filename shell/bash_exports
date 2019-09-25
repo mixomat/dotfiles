@@ -1,7 +1,7 @@
 # java env
 export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
-export JAVA_10_HOME="/Library/Java/JavaVirtualMachines/jdk-10.0.2.jdk/Contents/Home"
-export JAVA_HOME=${JAVA_8_HOME}
+export JAVA_11_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
+export JAVA_HOME=${JAVA_11_HOME}
 export IDEA_JDK=$JAVA_HOME
 
 # maven env
