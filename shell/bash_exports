@@ -1,8 +1,9 @@
 # java env
 export JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 export JAVA_11_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
+export JAVA_13_HOME="/Library/Java/JavaVirtualMachines/openjdk-13.jdk/Contents/Home"
 export JAVA_HOME=${JAVA_11_HOME}
-export IDEA_JDK=$JAVA_HOME
+export IDEA_JDK=$JAVA_13_HOME
 
 # maven env
 export MAVEN_OPTS='-Xmx1024m'
@@ -25,14 +26,17 @@ export SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
 export RBENV_ROOT=/usr/local/var/rbenv
 
 # paths
+PYTHON_PATH="/usr/local/opt/python@3.8/bin"
 SCRIPTS_PATH="/Users/marc/projects/scripts"
 XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
-export PATH="/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin"
+ISTIO_PATH="/Users/marc/projects/cloud/istio-1.7.0/bin"
+
+export PATH="${PYTHON_PATH}:/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${ISTIO_PATH}"
 
 # misc env
 export MANPATH="/opt/local/share/man:${MANPATH}"
 export EDITOR='/usr/local/bin/vim'
 export HISTCONTROL='ignoredups'
 export PAGER='less'
-export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
