@@ -1,0 +1,55 @@
+DOTFILES="/Users/marc/dotfiles"
+
+# zsh
+ZSH="/Users/marc/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# java env
+JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
+JAVA_11_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
+JAVA_13_HOME="/Library/Java/JavaVirtualMachines/openjdk-13.jdk/Contents/Home"
+JAVA_HOME=${JAVA_11_HOME}
+IDEA_JDK=$JAVA_13_HOME
+
+# maven env
+MAVEN_OPTS='-Xmx1024m'
+
+# android
+ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
+
+# node.js
+NODE_PATH="/usr/local/lib/node_modules"
+
+# nvm
+NVM_LAZY_LOAD=true
+NVM_AUTO_USE=true
+NVM_DIR="$HOME/.nvm"
+
+# go
+GOROOT="/usr/local/opt/go/libexec"
+GOPATH="/Users/marc/projects/go"
+
+# spark
+SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
+
+# ruby
+RBENV_ROOT=/usr/local/var/rbenv
+
+# gcloud
+GCLOUD_SDK="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+
+# paths
+PYTHON_PATH="/usr/local/opt/python@3.8/bin"
+SCRIPTS_PATH="/Users/marc/projects/scripts"
+XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
+ISTIO_PATH="/Users/marc/projects/cloud/istio-1.7.0/bin"
+
+export PATH="${PYTHON_PATH}:/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${ISTIO_PATH}"
+
+# misc env
+export MANPATH="/opt/local/share/man:${MANPATH}"
+export EDITOR='/usr/local/bin/vim'
+export HISTCONTROL='ignoredups'
+export PAGER='less'
+export LC_ALL="en_US.UTF-8"
+export LANG="en_US.UTF-8"
