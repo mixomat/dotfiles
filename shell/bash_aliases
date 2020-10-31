@@ -1,6 +1,3 @@
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....="cd ../../.."
 alias cd..="cd .."
 alias :q="exit"
 alias c='clear'
@@ -8,36 +5,28 @@ alias t='tar xfv'
 alias tj='tar xfjv'
 alias tz='tar xfzv'
 alias s='screen -r'
-alias ls='ls -G'
+alias ls='lsd'
 alias l='less'
 alias screen='screen -l'
 alias df='df -h'
-alias log='tail -f /var/log/system.log'
 alias su='su --login'
-alias psg='ps wwwwaux | grep'
+alias psg='ps -ef | grep'
 alias fwlog='tail -f /var/log/ipfw.log'
 alias v='vim'
-alias bx='BitchX'
 alias pwgen="openssl rand -base64 30"
-alias M='svn diff'
-alias G='svn diff'
 alias C='see'
 alias g='git'
 alias gl='glances'
 alias reboot='sudo /sbin/reboot'
 alias nmap='sudo nmap -sS -P0'
-alias wireshark='sudo wireshark'
 alias ipfw='sudo ipfw'
 alias flushdns="dscacheutil -flushcache"
 alias top='top -R -F -s 2 -o cpu'
 alias digall='dig +nocmd +multiline +noall +answer'
 alias sshx='ssh -p 4365'
-alias adb='/Users/marc/projects/sdks/android-sdk/platform-tools/adb'
 alias d='docker'
 alias dm='docker-machine'
 alias dcom='docker-compose'
-alias k='kubectl'
-alias dockerscreen='screen ~/Library/Containers/com.docker.docker/Data/com.docker.driver.amd64-linux/tty'
 alias week='date +%V'
 alias brewu="brew update && brew upgrade && brew cleanup && brew cask cleanup"
 alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
@@ -46,9 +35,13 @@ alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && kil
 alias path='echo -e ${PATH//:/\\n}'
 alias push='git push'
 alias pull='git pull -r'
+alias rsync_hd_music="rsync -auv ~/Music/HiRes --exclude=.DS_Store /Volumes/music/"
+alias decode64='base64 -D'
+
 # cvmaker docker 
 alias cvmaker="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose.yml"
 alias cvmakerdev="docker-compose -f ~/projects/cvmaker/cvmaker/docker-compose-dev.yml"
+
 # sistrix docker
 alias cm="~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
 alias cm_dev="CRAWLER_MASTER_HOST=https://cm-dev.007ac9.net ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-automation/bin/cm"
@@ -56,4 +49,11 @@ alias cm_prod="CRAWLER_MASTER_HOST=https://cm.007ac9.net ~/projects/sistrix/link
 alias crawler="docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-master/docker-compose-dev.yml"
 alias crawleragent="CRAWLER_NAME=$HOSTNAME RABBITMQ_HOST=host.docker.internal SPRING_KAFKA_BOOTSTRAP_SERVERS=host.docker.internal:9092 docker-compose -f ~/projects/sistrix/linkdb/sistrix-crawler-aggregator/sistrix-crawler-agent/docker-compose-dev.yml"
 
-alias rsync_hd_music="rsync -auv ~/Music/HiRes --exclude=.DS_Store /Volumes/music/"
+# k8s
+alias k='kubectl'
+alias kx='kubectx'
+alias kn='kubens'
+alias kubeseal='kubeseal --controller-namespace gitops'
+alias kubesealraw='kubeseal --raw --from-file=/dev/stdin --scope cluster-wide'
+alias fluxctl='fluxctl --k8s-fwd-ns gitops'
+alias logcli='~/projects/go/bin/logcli'
