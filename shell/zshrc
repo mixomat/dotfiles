@@ -4,8 +4,10 @@ plugins=(
   git
   brew
   docker
+  gcloud
   zsh-nvm
   rbenv
+  jenv
   dotenv
 )
 

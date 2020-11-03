@@ -8,41 +8,42 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 JAVA_11_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
 JAVA_13_HOME="/Library/Java/JavaVirtualMachines/openjdk-13.jdk/Contents/Home"
-JAVA_HOME=${JAVA_11_HOME}
-IDEA_JDK=$JAVA_13_HOME
+export JAVA_HOME=${JAVA_11_HOME}
+export IDEA_JDK=${JAVA_13_HOME}
 
 # maven env
-MAVEN_OPTS='-Xmx1024m'
+export MAVEN_OPTS='-Xmx1024m'
 
 # android
-ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
+export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
 
 # node.js
-NODE_PATH="/usr/local/lib/node_modules"
+export NODE_PATH="/usr/local/lib/node_modules"
 
 # nvm
-NVM_LAZY_LOAD=true
-NVM_AUTO_USE=true
-NVM_DIR="$HOME/.nvm"
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+export NVM_DIR="$HOME/.nvm"
 
 # go
-GOROOT="/usr/local/opt/go/libexec"
-GOPATH="/Users/marc/projects/go"
+export GOROOT="/usr/local/opt/go/libexec"
+export GOPATH="/Users/marc/projects/go"
 
 # spark
-SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
+export SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
 
 # ruby
-RBENV_ROOT=/usr/local/var/rbenv
+export RBENV_ROOT=/usr/local/var/rbenv
 
 # gcloud
-GCLOUD_SDK="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
+export CLOUDSDK_HOME="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
 
 # paths
-PYTHON_PATH="/usr/local/opt/python@3.8/bin"
-SCRIPTS_PATH="/Users/marc/projects/scripts"
-XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
-ISTIO_PATH="/Users/marc/projects/cloud/istio-1.7.0/bin"
+export PYTHON_PATH="/usr/local/opt/python@3.8/bin"
+export SCRIPTS_PATH="/Users/marc/projects/scripts"
+export XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
+export ISTIO_PATH="/Users/marc/projects/cloud/istio-1.7.0/bin"
 
 export PATH="${PYTHON_PATH}:/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${ISTIO_PATH}"
 
