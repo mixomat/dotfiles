@@ -18,13 +18,8 @@ declare symlinkDirectory="$HOME"
 create_symlinks() {
 
     declare -a FILES_TO_SYMLINK=(
-        "shell/bash_aliases"
-        "shell/bash_exports"
-        "shell/bash_functions"
-        "shell/bash_profile"
-        "shell/bash_prompt"
-        "shell/bashrc"
-        "shell/inputrc"
+        "shell/zshenv.mac"
+        "shell/zshrc"
 
         "git/gitconfig"
         "git/gitignore"
