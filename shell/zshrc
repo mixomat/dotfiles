@@ -7,7 +7,6 @@ plugins=(
   gcloud
   zsh-nvm
   rbenv
-  jenv
   dotenv
 )
 
