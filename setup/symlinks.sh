@@ -18,7 +18,7 @@ declare symlinkDirectory="$HOME"
 create_symlinks() {
 
     declare -a FILES_TO_SYMLINK=(
-        "shell/zshenv.mac"
+        "shell/zshenv"
         "shell/zshrc"
 
         "git/gitconfig"
@@ -29,6 +29,7 @@ create_symlinks() {
     )
 
     local i=""
+    local sourcePath=""
     local sourceFile=""
     local targetFile=""
     local skipQuestions=false
@@ -37,7 +38,8 @@ create_symlinks() {
 
     for i in "${FILES_TO_SYMLINK[@]}"; do
 
-        sourceFile="$(cd .. && pwd)/$i"
+        sourcePath="$(cd .. && pwd)/$i"
+        sourceFile="$(get_env_file $sourcePath)"
         targetFile="$symlinkDirectory/.$(printf "%s" "$i" | sed "s/.*\/\(.*\)/\1/g")"
 
         if [ ! -e "$targetFile" ] || $skipQuestions; then

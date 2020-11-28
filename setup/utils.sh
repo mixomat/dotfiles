@@ -191,3 +191,12 @@ show_spinner() {
     done
 
 }
+
+get_env_file() {
+  local env=$(uname -s | awk '{print tolower($0)}')
+  local file=$1
+
+  [ -f "$file.$env" ] && echo "$file.$env" || echo $file
+
+
+}

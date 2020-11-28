@@ -11,11 +11,19 @@ install_vim_plug() {
         "Installing vim-plug"
 }
 
+create_vim_dirs() {
+  execute \
+        "mkdir -p ~/.vim/backups ~/.vim/swaps" \
+        "Creating vim directories"
+}
+
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
         print_in_purple "\n • VIM\n\n"
+
+        create_vim_dirs
 
         ask_for_confirmation "Should I install vim-plug"
         if answer_is_yes; then
