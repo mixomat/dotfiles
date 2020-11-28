@@ -14,7 +14,7 @@ function decode_secret() {
   if [ $# -eq 3 ]; then
     echo "decoding secret $secret_entry in $namespace/$secret\n"
     local encoded=$(kubectl get secret $secret -n $namespace -ojsonpath="{.data.$secret_entry}")
-    echo -n "$encoded" | base64 -D
+    echo -n "$encoded" | base64 --decode
   elif [ $# -eq 2 ]; then
     echo "retrieving secret $namespace/$secret\n"
     kubectl get secret $secret -n $namespace -o yaml

@@ -1,0 +1,25 @@
+DOTFILES="$HOME/dotfiles"
+
+# zsh
+ZSH="$HOME/.oh-my-zsh"
+ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# java env
+export JAVA_HOME="/usr/lib/jvm/default"
+#export IDEA_JDK=${JAVA_13_HOME}
+
+# maven env
+export MAVEN_OPTS='-Xmx1024m'
+
+# nvm
+export NVM_LAZY_LOAD=true
+export NVM_AUTO_USE=true
+export NVM_DIR="$HOME/.nvm"
+
+
+# misc env
+export EDITOR='/usr/bin/vim'
+export HISTCONTROL='ignoredups'
+export PAGER='less'
+#export LC_ALL="en_US.UTF-8"
+#export LANG="en_US.UTF-8"
