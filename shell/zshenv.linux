@@ -14,6 +14,9 @@ ZSH_PLUGINS=(
   dotenv
 )
 
+# fzf
+export FZF_BINDINGS="/usr/share/fzf/key-bindings.zsh"
+
 # java env
 export JAVA_HOME="/usr/lib/jvm/default"
 

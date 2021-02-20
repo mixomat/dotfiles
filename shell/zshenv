@@ -15,6 +15,9 @@ ZSH_PLUGINS=(
   dotenv
 )
 
+# fzf
+export FZF_BINDINGS="/usr/local/opt/fzf/shell/key-bindings.zsh"
+
 # java env
 JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 JAVA_11_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"

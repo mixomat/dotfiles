@@ -13,9 +13,10 @@ source $DOTFILES/shell/aliases
 source $DOTFILES/shell/functions
 
 # fzf key bindings
-if [[ -f /usr/share/fzf/key-bindings.zsh ]]; then
-  source /usr/share/fzf/key-bindings.zsh
+if [[ -f $FZF_BINDINGS ]]; then
+  source $FZF_BINDINGS
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
+
