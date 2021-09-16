@@ -13,6 +13,7 @@ ZSH_PLUGINS=(
   helm
   rbenv
   dotenv
+  sdk
 )
 
 # fzf
@@ -22,7 +23,7 @@ export FZF_BINDINGS="/usr/local/opt/fzf/shell/key-bindings.zsh"
 JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
 JAVA_11_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
 JAVA_13_HOME="/Library/Java/JavaVirtualMachines/openjdk-13.jdk/Contents/Home"
-export JAVA_HOME=${JAVA_11_HOME}
+#export JAVA_HOME=${JAVA_18_HOME}
 export IDEA_JDK=${JAVA_13_HOME}
 
 # maven env
@@ -52,6 +53,10 @@ export RBENV_ROOT=/usr/local/var/rbenv
 # gcloud
 export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
 export CLOUDSDK_HOME="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+
+# sdkman
+export SDKMAN_DIR="$HOME/.sdkman"
+export SDKMAN_INIT="$SDKMAN_DIR/bin/sdkman-init.sh"
 
 # paths
 export PYTHON_PATH="/usr/local/opt/python@3.8/bin"
