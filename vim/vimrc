@@ -18,7 +18,7 @@ set backupskip+=/private/tmp/*
 
 set number
 set ruler
-set numberwidth=5
+set numberwidth=6
 set scrolloff=3
 
 set wildmenu
@@ -45,7 +45,7 @@ set linebreak
 set nolist
 
 " mouse support
-set mouse=a
+set mouse=v
 set ttyfast
 set ttymouse=xterm2
 
@@ -54,10 +54,14 @@ set ttymouse=xterm2
 
 call plug#begin()
 Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
+Plug 'ryanoasis/vim-devicons'
 Plug 'scrooloose/nerdtree'
 Plug 'scrooloose/syntastic'
 Plug 'leafgarland/typescript-vim'
 Plug 'elzr/vim-json'
+Plug 'preservim/nerdcommenter'
+Plug 'tpope/vim-surround'
 Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -68,8 +72,6 @@ call plug#end()
 
 syntax enable
 set background=dark
-let g:solarized_contrast="high"
-" colorscheme solarized
 let g:airline_theme="bubblegum"
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -93,7 +95,6 @@ nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
-nnoremap <Tab> <C-P>
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " NERDTree settings
@@ -101,6 +102,5 @@ nnoremap <Tab> <C-P>
 " Close NERDTree when closing last tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
 
-" Open NERDTree when in folder mode
-" autocmd StdinReadPre * let s:std_in=1
-" autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Ensure gruvbox colorscheme is loaded at the perfect time
+autocmd vimenter * ++nested colorscheme gruvbox
