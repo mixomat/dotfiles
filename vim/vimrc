@@ -96,8 +96,8 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
-" NERDTree settings
+"nnoremap <leader>pf :Files<CR> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" autocmds
 
 " Close NERDTree when closing last tab
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
