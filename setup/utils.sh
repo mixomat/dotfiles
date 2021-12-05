@@ -198,5 +198,4 @@ get_env_file() {
 
   [ -f "$file.$env" ] && echo "$file.$env" || echo $file
 
-
 }

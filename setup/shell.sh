@@ -28,11 +28,3 @@ main() {
 }
 
 main
-# link shell files
-#ln -s ~/dotfiles/shell/zshrc ~/.zshrc
-
-#if [[ "$OSTYPE" == "darwin"* ]]; then
-	#ln -s ~/dotfiles/shell/zshenv.mac ~/.zshenv
-#else
-	#ln -s ~/dotfiles/shell/zshenv ~/.zshenv
-#fi
