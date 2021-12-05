@@ -24,7 +24,6 @@ create_symlinks() {
         "git/gitconfig"
         "git/gitignore"
 
-        "vim/vim"
         "vim/vimrc"
     )
 

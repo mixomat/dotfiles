@@ -13,7 +13,7 @@ install_vim_plug() {
 
 create_vim_dirs() {
   execute \
-        "mkdir -p ~/.vim/backups ~/.vim/swaps" \
+        "mkdir -p ~/.vim/backups ~/.vim/swaps ~/.vim/autoload" \
         "Creating vim directories"
 }
 
