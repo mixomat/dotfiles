@@ -4,8 +4,6 @@
 set nocompatible
 set encoding=utf-8
 
-filetype plugin indent on
-
 set autoread
 set backspace=2
 set clipboard=unnamed
@@ -51,6 +49,9 @@ set ttymouse=xterm2
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " Plugins
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+filetype plugin indent on
 
 call plug#begin()
 Plug 'altercation/vim-colors-solarized'
@@ -69,6 +70,7 @@ call plug#end()
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " Color scheme
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 syntax enable
 set background=dark
@@ -76,6 +78,7 @@ let g:airline_theme="bubblegum"
 
 " - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " Keyboard shortcuts
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 let mapleader=" "
 
@@ -96,7 +99,7 @@ nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
 nnoremap <C-H> <C-W><C-H>
 
-"nnoremap <leader>pf :Files<CR> - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 " autocmds
 
 " Close NERDTree when closing last tab
