@@ -38,3 +38,6 @@ defaults write com.apple.dock springboard-page-duration -float 0
 
 # Disable the “Are you sure you want to open this application?” dialog
 defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+# Install the iterm2 themes
+open "${HOME}/dotfiles/term/Solarized Dark.itermcolors"
