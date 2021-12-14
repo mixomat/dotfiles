@@ -25,6 +25,7 @@ create_symlinks() {
         "git/gitignore"
 
         "vim/vimrc"
+        "vim/ideavimrc"
     )
 
     local i=""

@@ -1,0 +1,40 @@
+"" Source your .vimrc
+"source ~/.vimrc
+
+""" Plugins  --------------------------------
+Plug 'tpope/vim-surround'
+Plug 'preservim/nerdtree'
+Plug 'tpope/vim-commentary'
+
+"" -- Suggested options --
+set showmode
+set scrolloff=5
+set incsearch
+set wildmenu
+
+""" Map leader to space ---------------------
+let mapleader=" "
+
+""" Mappings --------------------------------
+map <leader>r <Action>(Run)
+map <leader>d <Action>(Debug)
+map <leader>c <Action>(Stop)
+map <leader>o <Action>(FileStructurePopup)
+map <leader>z <Action>(ToggleDistractionFreeMode)
+map <leader>t :NERDTreeToggle<CR>
+
+" Don't use Ex mode, use Q for formatting.
+map Q gq
+
+
+"" -- Map IDE actions to IdeaVim -- https://jb.gg/abva4t
+"" Map \r to the Reformat Code action
+"map \r <Action>(ReformatCode)
+
+"" Map <leader>d to start debug
+
+"" Map \b to toggle the breakpoint on the current line
+"map \b <Action>(ToggleLineBreakpoint)
+
+
+" Find more examples here: https://jb.gg/share-ideavimrc
