@@ -11,6 +11,7 @@ set showmode
 set scrolloff=5
 set incsearch
 set wildmenu
+set clipboard+=unnamed
 
 """ Map leader to space ---------------------
 let mapleader=" "
