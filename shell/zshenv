@@ -32,14 +32,8 @@ export MAVEN_OPTS='-Xmx1024m'
 # android
 export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
 
-# node.js
-export NODE_PATH="/usr/local/lib/node_modules"
-
-# nvm
-export NVM_LAZY_LOAD=true
-export NVM_AUTO_USE=true
-export NVM_DIR="$HOME/.nvm"
-export NVM_INIT="/usr/local/opt/nvm/nvm.sh"
+# volta (node)
+export VOLTA_HOME="$HOME/.volta"
 
 # go
 export GOROOT="/usr/local/opt/go/libexec"
