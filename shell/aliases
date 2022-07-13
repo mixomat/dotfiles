@@ -36,6 +36,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias push='git push'
 alias pull='git pull -r'
 alias rsync_hd_music="rsync -auv ~/Music/HiRes --exclude=.DS_Store /Volumes/music/"
+alias rsync_hd_music_back="rsync -auv /Volumes/music/HiRes --exclude=.DS_Store ~/Music/"
 alias decode64='base64 -D'
 
 # cvmaker docker 
