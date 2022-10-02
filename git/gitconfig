@@ -41,3 +41,5 @@
 	rebase = true
 [init]
 	defaultBranch = main
+[url "git@git.exaring.net:"]
+	insteadOf = https://git.exaring.net
