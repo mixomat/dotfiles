@@ -59,7 +59,7 @@ export SCRIPTS_PATH="/Users/marc/projects/scripts"
 export XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
 export ISTIO_PATH="/Users/marc/projects/cloud/istio-1.7.0/bin"
 
-export PATH="${PYTHON_PATH}:/usr/local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${ISTIO_PATH}"
+export PATH="${PYTHON_PATH}:/usr/local/bin:/usr/local/sbin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${GOPATH}/bin:${ISTIO_PATH}"
 
 # misc env
 export MANPATH="/opt/local/share/man:${MANPATH}"
@@ -68,3 +68,7 @@ export HISTCONTROL='ignoredups'
 export PAGER='less'
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
+
+#Auto-Complete function for AWSume
+fpath=(~/.awsume/zsh-autocomplete/ $fpath)
+
