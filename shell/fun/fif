@@ -1,2 +1,5 @@
+### FILES
+# mnemonic: [F]ind [i]n [F]iles
+# grep and search in files in cwd, show preview of selection
 rg --line-number --smart-case --no-heading --color=always "$@" \
-| fzf -d ':' -n 2.. --ansi --preview-window 'down,30%,+{2}-10' --preview 'bat --style=numbers --color=always --highlight-line {2} {1}'
+| fzf -d ':' -n 2.. --ansi --header '[search:files]' --preview-window 'down,30%,+{2}-10' --preview 'bat --style=numbers --color=always --highlight-line {2} {1}'
