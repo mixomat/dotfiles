@@ -9,8 +9,9 @@ plugins=($ZSH_PLUGINS[*])
 
 source $ZSH/oh-my-zsh.sh
 
-source $DOTFILES/shell/aliases
-source $DOTFILES/shell/functions
+source $DOTFILES/shell/aliases.sh
+source $DOTFILES/shell/functions.sh
+source $DOTFILES/shell/exa.sh
 
 # fzf key bindings
 if [[ -f $FZF_BINDINGS ]]; then
