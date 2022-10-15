@@ -7,7 +7,6 @@ ZSH_PLUGINS=(
   z
   zsh-interactive-cd
   git
-  brew
   docker
   gcloud
   helm
