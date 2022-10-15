@@ -16,6 +16,7 @@ ZSH_PLUGINS=(
 
 # fzf
 export FZF_BINDINGS="/usr/share/fzf/key-bindings.zsh"
+export FZF_COMPLETION="/usr/share/fzf/completion.zsh"
 
 # java env
 export JAVA_HOME="/usr/lib/jvm/default"

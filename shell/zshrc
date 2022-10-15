@@ -13,9 +13,12 @@ source $DOTFILES/shell/aliases.sh
 source $DOTFILES/shell/functions.sh
 source $DOTFILES/shell/exa.sh
 
-# fzf key bindings
-if [[ -f $FZF_BINDINGS ]]; then
+# fzf setup
+if [[ $- == *i* && -f $FZF_BINDINGS ]]; then
   source $FZF_BINDINGS
+fi
+if [[ $- == *i* && -f $FZF_COMPLETION ]]; then
+  source $FZF_COMPLETION 2> /dev/null
 fi
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -26,3 +29,4 @@ fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "$SDKMAN_INIT" ]] && source "$SDKMAN_INIT"
+

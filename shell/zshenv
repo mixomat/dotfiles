@@ -6,6 +6,7 @@ ZSH_THEME="powerlevel10k/powerlevel10k"
 ZSH_PLUGINS=(
   macos
   z
+  zsh-interactive-cd
   git
   brew
   docker
@@ -18,6 +19,7 @@ ZSH_PLUGINS=(
 
 # fzf
 export FZF_BINDINGS="/usr/local/opt/fzf/shell/key-bindings.zsh"
+export FZF_COMPLETION="/usr/local/opt/fzf/shell/completion.zsh"
 
 # java env
 JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
