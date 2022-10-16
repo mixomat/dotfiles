@@ -2,4 +2,10 @@
 # mnemonic: [F]ind [F]ile
 # list files in cwd
 rg --files --color=always | 
-  fzf --ansi --preview 'bat --color=always --style=numbers --line-range=:500 {}'
+  fzf \
+    --ansi \
+    --prompt 'All> ' \
+    --header 'CTRL-D: Directories / CTRL-F: Files' \
+    --bind 'ctrl-d:change-prompt(Directories> )+reload(find * -type d)' \
+    --bind 'ctrl-f:change-prompt(Files> )+reload(find * -type f)' \
+    --preview 'bat --color=always --style=numbers --line-range=:500 {}'
