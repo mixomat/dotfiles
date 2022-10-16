@@ -1,5 +1,13 @@
-### FILES
+#!/usr/bin/env zsh
 # mnemonic: [F]ind [i]n [F]iles
-# grep and search in files in cwd, show preview of selection
-rg --line-number --smart-case --no-heading --color=always "$@" \
-| fzf -d ':' -n 2.. --ansi --header '[search:files]' --preview-window 'down,30%,+{2}-10' --preview 'bat --style=numbers --color=always --highlight-line {2} {1}'
+# ripgrep in files in current dir, filter resuls and show preview of selection
+IFS=:
+
+rg --color=always --line-number --no-heading --smart-case "${*:-}" |
+  fzf \
+    --ansi \
+    --color "hl:-1:underline,hl+:-1:underline:reverse" \
+    --delimiter : \
+    --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
+    --preview-window 'down,40%,border-bottom,+{2}+3/3,~3' \
+    --border 

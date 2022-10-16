@@ -1,4 +1,5 @@
 ### FILES
 # mnemonic: [F]ind [F]ile
 # list files in cwd
-rg --files | fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'
+rg --files --color=always | 
+  fzf --ansi --preview 'bat --color=always --style=numbers --line-range=:500 {}'
