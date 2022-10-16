@@ -1,4 +1,4 @@
-### FILES
+#!/usr/bin/env zsh
 # mnemonic: [F]ind [F]ile
 # list files in cwd
 rg --files --color=always | 
