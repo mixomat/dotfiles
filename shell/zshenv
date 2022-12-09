@@ -21,13 +21,6 @@ ZSH_PLUGINS=(
 export FZF_BINDINGS="/usr/local/opt/fzf/shell/key-bindings.zsh"
 export FZF_COMPLETION="/usr/local/opt/fzf/shell/completion.zsh"
 
-# java env
-JAVA_8_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home"
-JAVA_11_HOME="/Library/Java/JavaVirtualMachines/adoptopenjdk-11.jdk/Contents/Home"
-JAVA_13_HOME="/Library/Java/JavaVirtualMachines/openjdk-13.jdk/Contents/Home"
-#export JAVA_HOME=${JAVA_18_HOME}
-export IDEA_JDK=${JAVA_13_HOME}
-
 # maven env
 export MAVEN_OPTS='-Xmx1024m'
 
