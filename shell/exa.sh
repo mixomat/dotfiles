@@ -9,6 +9,7 @@ export EXA_PROJECTS="/Users/marc/projects/exaring"
 export EXA_OPEN="open"
 export PATH="${PATH}:${EXA_PROJECTS}/exaring-env/bin:${EXA_PROJECTS}/_scripts"
 
+source $EXA_PROJECTS/.env
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ALIASES            #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -27,6 +28,8 @@ alias fixauthor="_exa_fix_author"
 alias sm-subscription="_exa_sm_subscription"
 alias bw-customer="_exa_bw_customer"
 alias bw-contract="_exa_bw_contract"
+alias bw-customer-prod="_exa_bw_customer_prod"
+alias bw-contract-prod="_exa_bw_contract_prod"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -78,7 +81,7 @@ function _exa_sm_subscription() {
   if [[ -z "$1" ]]; then
     echo "Usage: $0 userHandle"
   else
-    http -v -a 'Auth:f9hf843FAWE$f!fs' https://subscription-management.int.waipu-dev.net/api/users/$1/subscription Accept:'application/vnd.waipu.subscription-management-subscription-v1+json' --pretty=none --print=b | jq .
+    http -a $SM_AUTH_DEV https://subscription-management.int.waipu-dev.net/api/users/$1/subscription Accept:'application/vnd.waipu.subscription-management-subscription-v1+json' --pretty=none --print=b | jq .
   fi
 }
 
@@ -86,7 +89,15 @@ function _exa_bw_customer() {
   if [[ -z "$1" ]]; then
     echo "Usage: $0 customerId"
   else
-    http -a "BackendEndToEndTests:VnaH6GavsLA98MABbag13Ddaa67BgXa09KnaT" https://billwerk-cache-service.waipu-dev.net/api/v1/Customers/$1
+    http -a $BW_AUTH_DEV https://billwerk-cache-service.waipu-dev.net/api/v1/Customers/$1
+  fi
+}
+
+function _exa_bw_customer_prod() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: $0 customerId"
+  else
+    http -a $BW_AUTH_PROD https://billwerk-cache-service.waipu-dev.net/api/v1/Customers/$1
   fi
 }
 
@@ -94,8 +105,15 @@ function _exa_bw_contract() {
   if [[ -z "$1" ]]; then
     echo "Usage: $0 contractId"
   else
-    http -a "BackendEndToEndTests:VnaH6GavsLA98MABbag13Ddaa67BgXa09KnaT" https://billwerk-cache-service.waipu-dev.net/api/v1/Contracts/$1
+    http -a $BW_AUTH_DEV https://billwerk-cache-service.waipu-dev.net/api/v1/Contracts/$1
   fi
 }
 
-source $EXA_PROJECTS/.env
+function _exa_bw_contract_prod() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: $0 contractId"
+  else
+    http -a $BW_AUTH_PROD https://billwerk-cache-service.waipu.tv/api/v1/Contracts/$1
+  fi
+
+}
