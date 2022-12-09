@@ -34,12 +34,16 @@ alias rsync_hd_music="rsync -auv ~/Music/HiRes --exclude=.DS_Store /Volumes/musi
 alias rsync_hd_music_back="rsync -auv /Volumes/music/HiRes --exclude=.DS_Store ~/Music/"
 alias decode64='base64 -D'
 alias wolman='wakeonlan 3c:7c:3f:7d:a7:d3'
+alias timestamp='date -r'
 
 # git
 alias g='git'
 alias gco='git branch | fzf | xargs git checkout'
 alias push='git push'
 alias pull='git pull -r'
+
+#glab
+alias glab-mr='glab mr create -f -y --push --squash-before-merge && glab mr view --web'
 
 # docker
 alias d='docker'

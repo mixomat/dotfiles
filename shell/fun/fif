@@ -10,4 +10,5 @@ rg --color=always --line-number --no-heading --smart-case "${*:-}" |
     --delimiter : \
     --preview 'bat --style=numbers --color=always {1} --highlight-line {2}' \
     --preview-window 'down,40%,border-top,+{2}+3/3,~3' \
-    --border --reverse
+    --border --reverse +s \
+  | awk -F':' '{print $1}'
