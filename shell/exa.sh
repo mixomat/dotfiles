@@ -5,7 +5,7 @@
 #        VARIABLES          #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 export EXA_USER="marc.weinberger"
-export EXA_PROJECTS="/Users/marc/projects/exaring"
+export EXA_PROJECTS="${HOME}/projects/exaring"
 export EXA_OPEN="open"
 export PATH="${PATH}:${EXA_PROJECTS}/exaring-env/bin:${EXA_PROJECTS}/_scripts"
 
