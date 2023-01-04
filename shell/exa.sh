@@ -25,11 +25,17 @@ alias kprod="exaprod && kx arn:aws:eks:eu-central-1:802129380100:cluster/bs-k-pr
 alias unsetAWS="awsume -u"
 alias prodb="_exa_prod_db_tunnel"
 alias fixauthor="_exa_fix_author"
-alias sm-subscription="_exa_sm_subscription"
-alias bw-customer="_exa_bw_customer"
-alias bw-contract="_exa_bw_contract"
-alias bw-customer-prod="_exa_bw_customer_prod"
-alias bw-contract-prod="_exa_bw_contract_prod"
+# subscription-management api
+alias sm-subscription-dev='_exa_sm_subscription dev'
+alias sm-subscription-preview='_exa_sm_subscription preview'
+alias sm-subscription-prod='_exa_sm_subscription prod'
+# billwerk api
+alias bw-customer-dev="_exa_bw_customer dev"
+alias bw-customer-preview="_exa_bw_customer preview"
+alias bw-customer-prod="_exa_bw_customer prod"
+alias bw-contract-dev="_exa_bw_contract dev"
+alias bw-contract-preview="_exa_bw_contract preview"
+alias bw-contract-prod="_exa_bw_contract prod"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -78,42 +84,64 @@ function _exa_fix_author() {
 }
 
 function _exa_sm_subscription() {
-  if [[ -z "$1" ]]; then
-    echo "Usage: $0 userHandle"
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env userHandle"
   else
-    http -a $SM_AUTH_DEV https://subscription-management.int.waipu-dev.net/api/users/$1/subscription Accept:'application/vnd.waipu.subscription-management-subscription-v1+json' --pretty=none --print=b | jq .
+    local host=$(_exa_host "$1")
+    local userHandle="$2"
+    http -a "$SM_AUTH" https://subscription-management.int.${host}/api/users/$userHandle/subscription Accept:'application/vnd.waipu.subscription-management-subscription-v1+json' --pretty=none -b | jq .
   fi
 }
 
 function _exa_bw_customer() {
-  if [[ -z "$1" ]]; then
-    echo "Usage: $0 customerId"
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env customer"
   else
-    http -a $BW_AUTH_DEV https://billwerk-cache-service.waipu-dev.net/api/v1/Customers/$1
-  fi
-}
-
-function _exa_bw_customer_prod() {
-  if [[ -z "$1" ]]; then
-    echo "Usage: $0 customerId"
-  else
-    http -a $BW_AUTH_PROD https://billwerk-cache-service.waipu-dev.net/api/v1/Customers/$1
+    local host=$(_exa_host $1)
+    local customer=$2
+    shift 2
+    http -a $BW_AUTH https://billwerk-cache-service.$host/api/v1/Customers/$customer $@
   fi
 }
 
 function _exa_bw_contract() {
-  if [[ -z "$1" ]]; then
-    echo "Usage: $0 contractId"
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env contract"
   else
-    http -a $BW_AUTH_DEV https://billwerk-cache-service.waipu-dev.net/api/v1/Contracts/$1
+    local host=$(_exa_host $1)
+    local contract=$2
+    shift 2
+    http -a $BW_AUTH https://billwerk-cache-service.$host/api/v1/Contracts/$contract $@
   fi
 }
 
-function _exa_bw_contract_prod() {
-  if [[ -z "$1" ]]; then
-    echo "Usage: $0 contractId"
-  else
-    http -a $BW_AUTH_PROD https://billwerk-cache-service.waipu.tv/api/v1/Contracts/$1
-  fi
+function _exa_dazn_pac() {
+  http --verbose POST https://partners.ar.dazn-stage.com/v1/public/api/access-codes X-Dazn-Auth-Key:$DAZN_AUTH_STAGE campaignName='DAZN x Waiputvdemn2022'
+}
 
+function _exa_tag_deploy() {
+  if [[ -z "$1" ]]; then
+    echo "Usage: $0 tag-name"
+  else 
+    tag=$1
+    git tag $tag && git push origin $tag
+  fi
+}
+
+function _exa_host() {
+  case $1 in
+    "dev")
+      echo "waipu-dev.net"
+      ;;
+    "preview")
+      echo "waipu-preview.net"
+      ;;
+    "prod")
+      echo "waipu.tv"
+      ;;
+    *)
+      echo "invalid environment: $1"
+      return 1
+      ;;
+  esac
 }
