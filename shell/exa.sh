@@ -39,6 +39,10 @@ alias bw-customer-prod="_exa_bw_customer prod"
 alias bw-contract-dev="_exa_bw_contract dev"
 alias bw-contract-preview="_exa_bw_contract preview"
 alias bw-contract-prod="_exa_bw_contract prod"
+# product-configuration api
+alias product-config-dev="_exa_product_config dev"
+alias product-config-preview="_exa_product_config preview"
+alias product-config-prod="_exa_product_config prod"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -92,7 +96,7 @@ function _exa_users() {
   else
     local host=$(_exa_host "$1")
     local userHandle="$2"
-    http -a "$USERS_AUTH" https://users.int.${host}/api/users/$userHandle 
+    https -a "$USERS_AUTH" users.int.${host}/api/users/$userHandle 
   fi
 
 }
@@ -103,7 +107,7 @@ function _exa_sm_subscription() {
   else
     local host=$(_exa_host "$1")
     local userHandle="$2"
-    http -a "$SM_AUTH" https://subscription-management.int.${host}/api/users/$userHandle/subscription Accept:'application/vnd.waipu.subscription-management-subscription-v1+json' --pretty=none -b | jq .
+    https -a "$SM_AUTH" subscription-management.int.${host}/api/users/$userHandle/subscription Accept:'application/vnd.waipu.subscription-management-subscription-v1+json' --pretty=none -b | jq .
   fi
 }
 
@@ -114,7 +118,7 @@ function _exa_bw_customer() {
     local host=$(_exa_host $1)
     local customer=$2
     shift 2
-    http -a $BW_AUTH https://billwerk-cache-service.$host/api/v1/Customers/$customer $@
+    https -a $BW_AUTH billwerk-cache-service.$host/api/v1/Customers/$customer $@
   fi
 }
 
@@ -125,8 +129,19 @@ function _exa_bw_contract() {
     local host=$(_exa_host $1)
     local contract=$2
     shift 2
-    http -a $BW_AUTH https://billwerk-cache-service.$host/api/v1/Contracts/$contract $@
+    https -a $BW_AUTH billwerk-cache-service.$host/api/v1/Contracts/$contract $@
   fi
+}
+
+function _exa_product_config() {
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 env (salesBundle)"
+  else
+    local host=$(_exa_host $1)
+    shift 1
+    https -a $PC_AUTH product-configuration.int.$host/api/sales-bundles/$@
+  fi
+
 }
 
 function _exa_dazn_pac_stage() {
