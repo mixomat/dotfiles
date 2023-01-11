@@ -25,6 +25,9 @@ alias kprod="exaprod && kx arn:aws:eks:eu-central-1:802129380100:cluster/bs-k-pr
 alias unsetAWS="awsume -u"
 alias prodb="_exa_prod_db_tunnel"
 alias fixauthor="_exa_fix_author"
+# user-ng api
+alias users-dev='_exa_users dev'
+alias users-preview='_exa_users preview'
 # subscription-management api
 alias sm-subscription-dev='_exa_sm_subscription dev'
 alias sm-subscription-preview='_exa_sm_subscription preview'
@@ -83,6 +86,17 @@ function _exa_fix_author() {
   git config user.email "marc.weinberger@extern.exaring.de"
 }
 
+function _exa_users() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env userHandle|email"
+  else
+    local host=$(_exa_host "$1")
+    local userHandle="$2"
+    http -a "$USERS_AUTH" https://users.int.${host}/api/users/$userHandle 
+  fi
+
+}
+
 function _exa_sm_subscription() {
   if [[ $# -lt 2 ]]; then
     echo "Usage: $0 env userHandle"
@@ -115,7 +129,7 @@ function _exa_bw_contract() {
   fi
 }
 
-function _exa_dazn_pac() {
+function _exa_dazn_pac_stage() {
   http --verbose POST https://partners.ar.dazn-stage.com/v1/public/api/access-codes X-Dazn-Auth-Key:$DAZN_AUTH_STAGE campaignName='DAZN x Waiputvdemn2022'
 }
 
