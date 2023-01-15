@@ -6,16 +6,12 @@ cd "$(dirname "${BASH_SOURCE[0]}")" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-setup_zsh() {
-  execute \ 
-        "sh -c '$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)'" \
-        "Installing oh-my-zsh"
+setup_oh-my-zsh() {
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
 }
 
 setup_powerlevel_theme() {
-  execute \ 
-        "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k" \
-        "Installing zsh powerlevel10k theme"
+  git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 }
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -23,8 +19,19 @@ setup_powerlevel_theme() {
 main() {
   print_in_purple "\n • ZSH\n\n"
 
-  setup_zsh
-  setup_powerlevel_theme
+  ask_for_confirmation "Should I install and oh-my-zsh?"
+  if answer_is_yes; then
+    setup_oh-my-zsh
+  else
+    print_warning "Skipping oh-my-zsh installation"
+  fi
+
+  ask_for_confirmation "Should I install powerlevel10k?"
+  if answer_is_yes; then
+    setup_powerlevel_theme
+  else
+    print_warning "Skipping powerlevel10k installation"
+  fi
 }
 
 main
