@@ -1,17 +1,20 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-# Initialization code that may require console input (password prompts, [y/n]
-# confirmations, etc.) must go above this block; everything else may go below.
-if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
-fi
-
+# List of ZSH plugins to load is defined in $HOME/.zshenv
 plugins=($ZSH_PLUGINS[*])
 
-source $ZSH/oh-my-zsh.sh
+# Simply source file if readable
+function source_file() {
+  local file="$1"
+  [ -r "$file" ] && . "$file"
+}
 
-source $DOTFILES/shell/aliases.sh
-source $DOTFILES/shell/functions.sh
-source $DOTFILES/shell/exa.sh
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
+source_file "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+source_file $ZSH/oh-my-zsh.sh
+source_file $HOME/.p10k.zsh
+source_file $DOTFILES/shell/aliases.sh
+source_file $DOTFILES/shell/aliases.local.sh
+source_file $DOTFILES/shell/functions.sh
+source_file $DOTFILES/shell/exa.sh
 
 # fzf setup
 if [[ $- == *i* && -f $FZF_BINDINGS ]]; then
@@ -20,9 +23,6 @@ fi
 if [[ $- == *i* && -f $FZF_COMPLETION ]]; then
   source $FZF_COMPLETION 2> /dev/null
 fi
-
-# To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
-[[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
 # volta
 [[ -s "$VOLTA_HOME" ]] && export PATH="$VOLTA_HOME/bin:$PATH"

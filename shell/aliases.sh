@@ -6,7 +6,6 @@ alias t='tar xfv'
 alias tj='tar xfjv'
 alias tz='tar xfzv'
 alias s='screen -r'
-alias ls='lsd'
 alias l='less'
 alias screen='screen -l'
 alias df='df -h'
@@ -20,18 +19,11 @@ alias gl='glances'
 alias reboot='sudo /sbin/reboot'
 alias nmap='sudo nmap -sS -P0'
 alias ipfw='sudo ipfw'
-alias flushdns="dscacheutil -flushcache"
 alias top='top -R -F -s 2 -o cpu'
 alias digall='dig +nocmd +multiline +noall +answer'
 alias sshx='ssh -p 4365'
 alias week='date +%V'
-alias brewu="brew update && brew upgrade && brew cleanup && brew cask cleanup"
-alias afk="/System/Library/CoreServices/Menu\ Extras/User.menu/Contents/Resources/CGSession -suspend"
-alias show="defaults write com.apple.finder AppleShowAllFiles -bool true && killall Finder"
-alias hide="defaults write com.apple.finder AppleShowAllFiles -bool false && killall Finder"
 alias path='echo -e ${PATH//:/\\n}'
-alias rsync_hd_music="rsync -auv ~/Music/HiRes --exclude=.DS_Store /Volumes/music/"
-alias rsync_hd_music_back="rsync -auv /Volumes/music/HiRes --exclude=.DS_Store ~/Music/"
 alias decode64='base64 -D'
 alias wolman='wakeonlan 3c:7c:3f:7d:a7:d3'
 alias timestamp='date -r'
