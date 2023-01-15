@@ -25,6 +25,7 @@ alias kprod="exaprod && kx arn:aws:eks:eu-central-1:802129380100:cluster/bs-k-pr
 alias unsetAWS="awsume -u"
 alias prodb="_exa_prod_db_tunnel"
 alias fixauthor="_exa_fix_author"
+alias tag-deploy="_exa_tag_deploy"
 # user-ng api
 alias users-dev='_exa_users dev'
 alias users-preview='_exa_users preview'
@@ -43,6 +44,7 @@ alias bw-contract-prod="_exa_bw_contract prod"
 alias product-config-dev="_exa_product_config dev"
 alias product-config-preview="_exa_product_config preview"
 alias product-config-prod="_exa_product_config prod"
+
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#

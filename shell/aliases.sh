@@ -43,7 +43,8 @@ alias push='git push'
 alias pull='git pull -r'
 
 #glab
-alias glab-mr='glab mr create -f -y --push --squash-before-merge && glab mr view --web'
+alias glab-mr='glab mr create -f -y --push --squash-before-merge --remove-source-branch && glab mr view --web'
+alias glab-mr-draft='glab mr create -f -y --draft --push --squash-before-merge --remove-source-branch && glab mr view --web'
 
 # docker
 alias d='docker'
