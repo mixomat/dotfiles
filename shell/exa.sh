@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-source $DOTFILES/shell/exa_env
+[ -r $DOTFILES/shell/exa_env ] && . $DOTFILES/shell/exa_env
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        VARIABLES          #
