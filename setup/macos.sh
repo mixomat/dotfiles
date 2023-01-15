@@ -40,4 +40,4 @@ defaults write com.apple.dock springboard-page-duration -float 0
 defaults write com.apple.LaunchServices LSQuarantine -bool false
 
 # Install the iterm2 themes
-open "${HOME}/dotfiles/term/Solarized Dark.itermcolors"
+open "${HOME}/dotfiles/iterm/Solarized Dark.itermcolors"
