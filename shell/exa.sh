@@ -1,5 +1,6 @@
 #!/usr/bin/env zsh
 
+source $DOTFILES/shell/exa_env
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        VARIABLES          #
@@ -9,7 +10,6 @@ export EXA_PROJECTS="${HOME}/projects/exaring"
 export EXA_OPEN="open"
 export PATH="${PATH}:${EXA_PROJECTS}/exaring-env/bin:${EXA_PROJECTS}/_scripts"
 
-source $EXA_PROJECTS/.env
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ALIASES            #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#

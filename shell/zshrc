@@ -30,3 +30,4 @@ fi
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
 [[ -s "$SDKMAN_INIT" ]] && source "$SDKMAN_INIT"
 
+unset -f source_file
