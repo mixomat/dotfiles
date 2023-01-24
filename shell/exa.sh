@@ -30,6 +30,9 @@ alias tag-deploy="_exa_tag_deploy"
 alias users-dev='_exa_users dev'
 alias users-preview='_exa_users preview'
 # subscription-management api
+alias sm-dev='_exa_sm_service dev'
+alias sm-preview='_exa_sm_service preview'
+alias sm-prod='_exa_sm_service prod'
 alias sm-subscription-dev='_exa_sm_subscription dev'
 alias sm-subscription-preview='_exa_sm_subscription preview'
 alias sm-subscription-prod='_exa_sm_subscription prod'
@@ -109,7 +112,17 @@ function _exa_sm_subscription() {
   else
     local host=$(_exa_host "$1")
     local userHandle="$2"
-    https -a "$SM_AUTH" subscription-management.int.${host}/api/users/$userHandle/subscription Accept:'application/vnd.waipu.subscription-management-subscription-v1+json' --pretty=none -b | jq .
+    https -a "$SM_AUTH" subscription-management.int.${host}/api/users/$userHandle/subscription --pretty=none -b | jq .
+  fi
+}
+
+function _exa_sm_service() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env path"
+  else
+    local host=$(_exa_host "$1")
+    shift 1
+    https -a "$SM_AUTH" subscription-management.int.${host}$@ --pretty=none -b | jq .
   fi
 }
 
