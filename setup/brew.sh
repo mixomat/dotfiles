@@ -11,7 +11,8 @@ install_homebrew() {
     then
       echo "Installing Homebrew..."
       sudo -v
-      ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+      /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      eval "$(/opt/homebrew/bin/brew shellenv)"
     fi
 }
 
@@ -29,11 +30,11 @@ brew_upgrade() {
 }
 
 brew_bundle_install() {
-    brew tap Homebrew/bundle
+    #brew tap Homebrew/bundle
 
     execute \
         "brew bundle install" \
-        "Homebrew (upgrade)"
+        "Homebrew (bundle install)"
 
 }
 

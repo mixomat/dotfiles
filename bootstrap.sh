@@ -13,11 +13,11 @@ main() {
 
     ask_for_sudo
 
-    ./setup/xcode.sh
-    ./setup/brew.sh
     ./setup/shell.sh
     ./setup/symlinks.sh
     ./setup/vim.sh
+    ./setup/xcode.sh
+    ./setup/brew.sh
 }
 
 main
