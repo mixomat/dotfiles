@@ -1,7 +1,7 @@
 #!/bin/bash
 
 cd "$(dirname "${BASH_SOURCE[0]}")" \
-    && . "utils.sh" \
+    && . "../setup/utils.sh" \
 
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -30,8 +30,6 @@ brew_upgrade() {
 }
 
 brew_bundle_install() {
-    #brew tap Homebrew/bundle
-
     execute \
         "brew bundle install" \
         "Homebrew (bundle install)"
