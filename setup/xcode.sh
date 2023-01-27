@@ -75,9 +75,15 @@ main() {
 
     print_in_purple "\n • Xcode\n\n"
 
-    ask_for_confirmation "Should I install Xcode and Command line tools"
+    ask_for_confirmation "Should I install Command line tools"
     if answer_is_yes; then
         install_xcode_command_line_tools
+    else
+      print_warning "Skipping Xcode Command line tools"
+    fi
+
+    ask_for_confirmation "Should I install Xcode"
+    if answer_is_yes; then
         install_xcode
         set_xcode_developer_directory
         agree_with_xcode_licence
