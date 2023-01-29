@@ -18,6 +18,7 @@ main() {
     ./setup/vim.sh
     ./setup/xcode.sh
     ./brew/install.sh
+    ./sdkman/install.sh
 }
 
 main
