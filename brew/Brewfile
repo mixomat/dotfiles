@@ -147,4 +147,8 @@ cask "moneymoney"
 cask "docker"
 cask "jetbrains-toolbox"
 cask "openvpn-connect"
+cask "zoom"
+cask "signal"
+cask "rekordbox"
+cask "balenaetcher"
 mas "Flow", id: 1423210932

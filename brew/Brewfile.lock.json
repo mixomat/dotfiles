@@ -5,7 +5,7 @@
         "revision": "a2796b154bacabb94932a4812014b156c6271dc2"
       },
       "homebrew/cask": {
-        "revision": "fd24c21d72834ecdd81ad34df4e99b6ca573e71e"
+        "revision": "1c8d86596716937e1ae5166a28cd180d0856c15d"
       },
       "homebrew/cask-fonts": {
         "revision": "cff0aec4c0f1dbdd357795bd15a81bb765cd5573"
@@ -5733,6 +5733,30 @@
         "version": "3.4.1,4522",
         "options": {
           "full_name": "openvpn-connect"
+        }
+      },
+      "zoom": {
+        "version": "5.13.6.14918",
+        "options": {
+          "full_name": "zoom"
+        }
+      },
+      "signal": {
+        "version": "6.3.0",
+        "options": {
+          "full_name": "signal"
+        }
+      },
+      "rekordbox": {
+        "version": "6.6.9,20230111110322",
+        "options": {
+          "full_name": "rekordbox"
+        }
+      },
+      "balenaetcher": {
+        "version": "latest",
+        "options": {
+          "full_name": "balenaetcher"
         }
       }
     },
