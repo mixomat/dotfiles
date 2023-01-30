@@ -19,6 +19,8 @@ main() {
     ./setup/xcode.sh
     ./brew/install.sh
     ./sdkman/install.sh
+    ./iterm/setup.sh
+    ./macos/setup.sh
 }
 
 main
