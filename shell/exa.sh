@@ -37,12 +37,12 @@ alias sm-subscription-dev='_exa_sm_subscription dev'
 alias sm-subscription-preview='_exa_sm_subscription preview'
 alias sm-subscription-prod='_exa_sm_subscription prod'
 # billwerk api
-alias bw-customer-dev="_exa_bw_customer dev"
-alias bw-customer-preview="_exa_bw_customer preview"
-alias bw-customer-prod="_exa_bw_customer prod"
-alias bw-contract-dev="_exa_bw_contract dev"
-alias bw-contract-preview="_exa_bw_contract preview"
-alias bw-contract-prod="_exa_bw_contract prod"
+alias bwc-customer-dev="_exa_bwc_customer dev"
+alias bwc-customer-preview="_exa_bwc_customer preview"
+alias bwc-customer-prod="_exa_bwc_customer prod"
+alias bwc-contract-dev="_exa_bwc_contract dev"
+alias bwc-contract-preview="_exa_bwc_contract preview"
+alias bwc-contract-prod="_exa_bwc_contract prod"
 # product-configuration api
 alias product-config-dev="_exa_product_config dev"
 alias product-config-preview="_exa_product_config preview"
@@ -122,11 +122,11 @@ function _exa_sm_service() {
   else
     local host=$(_exa_host "$1")
     shift 1
-    https -a "$SM_AUTH" subscription-management.int.${host}$@ --pretty=none -b | jq .
+    https -v -a "$SM_AUTH" subscription-management.int.${host}$@ 
   fi
 }
 
-function _exa_bw_customer() {
+function _exa_bwc_customer() {
   if [[ $# -lt 2 ]]; then
     echo "Usage: $0 env customer"
   else
@@ -137,7 +137,7 @@ function _exa_bw_customer() {
   fi
 }
 
-function _exa_bw_contract() {
+function _exa_bwc_contract() {
   if [[ $# -lt 2 ]]; then
     echo "Usage: $0 env contract"
   else
