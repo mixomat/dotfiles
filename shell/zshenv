@@ -8,7 +8,6 @@ ZSH_PLUGINS=(
   z
   zsh-interactive-cd
   git
-  brew
   docker
   gcloud
   helm
@@ -16,6 +15,12 @@ ZSH_PLUGINS=(
   dotenv
   sdk
 )
+
+# homebrew
+export HOMEBREW_PREFIX="/opt/homebrew"
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
+export HOMEBREW_REPOSITORY="/opt/homebrew"
+export HOMEBREW_BUNDLE_FILE="${DOTFILES}/brew/Brewfile"
 
 # fzf
 export FZF_BINDINGS="/usr/local/opt/fzf/shell/key-bindings.zsh"
@@ -41,28 +46,29 @@ export SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
 export RBENV_ROOT=/usr/local/var/rbenv
 
 # gcloud
-export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
-export CLOUDSDK_HOME="/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk"
+export CLOUDSDK_PYTHON="/opt/homebrew/bin/python3.8"
 
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 export SDKMAN_INIT="$SDKMAN_DIR/bin/sdkman-init.sh"
 
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
+
+
 # paths
-export PYTHON_PATH="/usr/local/opt/python@3.8/bin"
 export SCRIPTS_PATH="/Users/marc/projects/scripts"
 export XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
-export ISTIO_PATH="/Users/marc/projects/cloud/istio-1.7.0/bin"
 
-export PATH="${PYTHON_PATH}:/usr/local/bin:/usr/local/sbin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${GOPATH}/bin:${ISTIO_PATH}"
+export PATH="${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
 # misc env
-export MANPATH="/opt/local/share/man:${MANPATH}"
 export EDITOR='/usr/local/bin/vim'
 export HISTCONTROL='ignoredups'
 export PAGER='less'
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"
+
 
 #Auto-Complete function for AWSume
 fpath=(~/.awsume/zsh-autocomplete/ $fpath)

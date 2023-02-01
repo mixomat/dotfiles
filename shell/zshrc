@@ -27,7 +27,11 @@ fi
 # volta
 [[ -s "$VOLTA_HOME" ]] && export PATH="$VOLTA_HOME/bin:$PATH"
 
-#THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
+# homebrew
+[[ -s "$HOMEBREW_PREFIX" ]] && export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
+
+# SDKMAN (THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!)
 [[ -s "$SDKMAN_INIT" ]] && source "$SDKMAN_INIT"
 
 unset -f source_file
+
