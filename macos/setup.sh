@@ -32,13 +32,15 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 ###
 
 # Disable animation in Dock 
-defaults write com.apple.dock tilesize -int 42
+defaults write com.apple.dock tilesize -int 36
 
 # Minimize to application in Dock
 defaults write com.apple.dock minimize-to-application -bool true
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
+defaults write com.apple.dock autohide-delay -float 0.1
+defaults write com.apple.dock autohide-time-modifier -int 0.1
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
@@ -48,6 +50,9 @@ defaults write com.apple.dock show-recents -bool false
 
 # Enable key repeat
 defaults write -g ApplePressAndHoldEnabled -bool false
+
+# jpg screenshot files
+defaults write com.apple.screencapture type jpg
 
 
 ###
