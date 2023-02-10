@@ -23,12 +23,17 @@ alias kdev="exadev && kx arn:aws:eks:eu-central-1:873929438979:cluster/bs-k-dev-
 alias kprev="exaprev && kx arn:aws:eks:eu-central-1:157635668512:cluster/bs-k-preview-v1"
 alias kprod="exaprod && kx arn:aws:eks:eu-central-1:802129380100:cluster/bs-k-prod-v1"
 alias unsetAWS="awsume -u"
-alias prodb="_exa_prod_db_tunnel"
 alias fixauthor="_exa_fix_author"
 alias tag-deploy="_exa_tag_deploy"
+
+# db tunnel
+alias db-users-dev="_exa_tunnel dev 5555:exaring-dev-users-encrypted-db.cqegwlhlos6b.eu-central-1.rds.amazonaws.com:5432 promstack"
+alias db-users-prod="_exa_tunnel prod 6666:exaring-prod-users-encrypted-db.ccgynvk3looc.eu-central-1.rds.amazonaws.com:5432 promstack"
+
 # user-ng api
 alias users-dev='_exa_users dev'
 alias users-preview='_exa_users preview'
+alias users-prod='_exa_users prod'
 # subscription-management api
 alias sm-dev='_exa_sm_service dev'
 alias sm-preview='_exa_sm_service preview'
@@ -36,6 +41,9 @@ alias sm-prod='_exa_sm_service prod'
 alias sm-subscription-dev='_exa_sm_subscription dev'
 alias sm-subscription-preview='_exa_sm_subscription preview'
 alias sm-subscription-prod='_exa_sm_subscription prod'
+alias sm-subscription-refresh-dev='_exa_sm_refresh dev'
+alias sm-subscription-refresh-preview='_exa_sm_refresh preview'
+alias sm-subscription-refresh-prod='_exa_sm_refresh prod'
 # billwerk api
 alias bwc-customer-dev="_exa_bwc_customer dev"
 alias bwc-customer-preview="_exa_bwc_customer preview"
@@ -43,10 +51,17 @@ alias bwc-customer-prod="_exa_bwc_customer prod"
 alias bwc-contract-dev="_exa_bwc_contract dev"
 alias bwc-contract-preview="_exa_bwc_contract preview"
 alias bwc-contract-prod="_exa_bwc_contract prod"
+alias bwc-contract-refresh-dev="_exa_bwc_contract_refresh dev"
+alias bwc-contract-refresh-preview="_exa_bwc_contract_refresh preview"
+alias bwc-contract-refresh-prod="_exa_bwc_contract_refresh prod"
 # product-configuration api
 alias product-config-dev="_exa_product_config dev"
 alias product-config-preview="_exa_product_config preview"
 alias product-config-prod="_exa_product_config prod"
+# access-control
+alias assets-dev="_exa_assets dev"
+alias assets-preview="_exa_assets preview"
+alias assets-prod="_exa_assets prod"
 
 
 
@@ -83,12 +98,22 @@ function _exa_jumphost() {
   fi
 }
 
-function _exa_prod_db_tunnel() {
-  ssh -L15010:exaring-dev-recording-aurora-cluster.cluster-cqegwlhlos6b.eu-central-1.rds.amazonaws.com:5432 10.21.31.50
-}
 
 function _exa_dev_billwerk_redis() {
   _exa_jumphost logstash -L16010:billwerk-cache-service-cache.csp7th.0001.euc1.cache.amazonaws.com:6380
+}
+
+function _exa_tunnel() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env tunnel (jumphost)"
+  else
+    local env=$1
+    local tunnel=$2
+    local jumphost="${3:-logstash}"
+
+    awsume $env
+    _exa_jumphost $jumphost -i $EXA_PROJECTS/exaring-secrets/ssh-keys/ec2-deploy -L $tunnel
+  fi
 }
 
 function _exa_fix_author() {
@@ -116,13 +141,23 @@ function _exa_sm_subscription() {
   fi
 }
 
+function _exa_sm_refresh() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env userHandle"
+  else
+    local host=$(_exa_host "$1")
+    local userHandle="$2"
+    https -a "$SM_AUTH" DELETE "subscription-management.int.${host}/api/users/$userHandle/cache?propagateCacheInvalidation=true"
+  fi
+}
+
 function _exa_sm_service() {
   if [[ $# -lt 2 ]]; then
     echo "Usage: $0 env path"
   else
     local host=$(_exa_host "$1")
     shift 1
-    https -v -a "$SM_AUTH" subscription-management.int.${host}$@ 
+    https -v -a "$SM_AUTH" subscription-management.int.${host}$@ Accept:" */*"
   fi
 }
 
@@ -144,7 +179,18 @@ function _exa_bwc_contract() {
     local host=$(_exa_host $1)
     local contract=$2
     shift 2
-    https -a $BW_AUTH billwerk-cache-service.$host/api/v1/Contracts/$contract $@
+    https -a $BW_AUTH billwerk-cache-service.$host/api/v1/Contracts/$contract$@
+  fi
+}
+
+function _exa_bwc_contract_refresh() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env contract"
+  else
+    local host=$(_exa_host $1)
+    local contract=$2
+    shift 2
+    https -v -a $BW_AUTH POST "billwerk-cache-service.$host/api/v1/Contracts/$contract/refresh?ensureBillwerkRefresh=true"
   fi
 }
 
@@ -156,8 +202,19 @@ function _exa_product_config() {
     shift 1
     https -a $PC_AUTH product-configuration.int.$host/api/sales-bundles/$@
   fi
-
 }
+
+function _exa_assets() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env user"
+  else
+    local host=$(_exa_host $1)
+    local user=$2
+    shift 2
+    https -a $ACCESS_AUTH "access-control.$host/api/users/$user/assets"
+  fi
+}
+
 
 function _exa_dazn_pac_stage() {
   http --verbose POST https://partners.ar.dazn-stage.com/v1/public/api/access-codes X-Dazn-Auth-Key:$DAZN_AUTH_STAGE campaignName='DAZN x Waiputvdemn2022'

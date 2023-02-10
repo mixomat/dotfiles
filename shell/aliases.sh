@@ -50,5 +50,4 @@ alias kubeseal='kubeseal --controller-namespace gitops --scope cluster-wide'
 alias kubesealraw='kubeseal --raw --from-file=/dev/stdin --controller-namespace gitops --scope cluster-wide'
 alias fluxctl='fluxctl --k8s-fwd-ns gitops'
 alias h='helm'
-alias logcli='~/projects/go/bin/logcli'
 

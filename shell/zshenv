@@ -7,6 +7,7 @@ ZSH_PLUGINS=(
   macos
   z
   zsh-interactive-cd
+  copypath
   git
   docker
   gcloud
@@ -19,12 +20,12 @@ ZSH_PLUGINS=(
 # homebrew
 export HOMEBREW_PREFIX="/opt/homebrew"
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar"
-export HOMEBREW_REPOSITORY="/opt/homebrew"
+export HOMEBREW_REPOSITORY=$HOMEBREW_PREFIX
 export HOMEBREW_BUNDLE_FILE="${DOTFILES}/brew/Brewfile"
 
 # fzf
-export FZF_BINDINGS="/usr/local/opt/fzf/shell/key-bindings.zsh"
-export FZF_COMPLETION="/usr/local/opt/fzf/shell/completion.zsh"
+export FZF_BINDINGS="${HOMEBREW_PREFIX}/opt/fzf/shell/key-bindings.zsh"
+export FZF_COMPLETION="${HOMEBREW_PREFIX}/opt/fzf/shell/completion.zsh"
 
 # maven env
 export MAVEN_OPTS='-Xmx1024m'
@@ -36,24 +37,21 @@ export ANDROID_HOME="/Users/marc/projects/sdks/android-sdk"
 export VOLTA_HOME="$HOME/.volta"
 
 # go
-export GOROOT="/usr/local/opt/go/libexec"
+export GOROOT="${HOMEBREW_PREFIX}/opt/go/libexec"
 export GOPATH="/Users/marc/projects/go"
 
 # spark
 export SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
 
 # ruby
-export RBENV_ROOT=/usr/local/var/rbenv
+export RBENV_ROOT=${HOMEBREW_PREFIX}/var/rbenv
 
 # gcloud
-export CLOUDSDK_PYTHON="/opt/homebrew/bin/python3.8"
+export CLOUDSDK_PYTHON="${HOMEBREW_PREFIX}/bin/python3.8"
 
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 export SDKMAN_INIT="$SDKMAN_DIR/bin/sdkman-init.sh"
-
-export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
-export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
 
 
 # paths
@@ -62,8 +60,11 @@ export XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
 
 export PATH="${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
+export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
+export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
+
 # misc env
-export EDITOR='/usr/local/bin/vim'
+export EDITOR="${HOMEBREW_PREFIX}/bin/vim"
 export HISTCONTROL='ignoredups'
 export PAGER='less'
 export LC_ALL="en_US.UTF-8"
