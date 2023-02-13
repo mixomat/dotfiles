@@ -121,6 +121,9 @@ brew "wget"
 brew "aws/tap/aws-sam-cli"
 brew "fluxcd/tap/flux"
 brew "pulumi/tap/pulumi"
+brew "step"
+
+# Casks
 cask "1password"
 cask "alfred"
 cask "amethyst"
@@ -145,12 +148,18 @@ cask "moneymoney"
 cask "docker"
 cask "jetbrains-toolbox"
 cask "datagrip"
+cask "webstorm"
 cask "openvpn-connect"
 cask "zoom"
 cask "signal"
 cask "rekordbox"
 cask "balenaetcher"
 cask "microsoft-teams"
+cask "microsoft-excel"
+cask "microsoft-word"
+cask "microsoft-auto-update"
 cask "cloudflare-warp"
+cask "postman"
 
+# App Store 
 mas "Flow", id: 1423210932
