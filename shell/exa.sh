@@ -44,7 +44,10 @@ alias sm-subscription-prod='_exa_sm_subscription prod'
 alias sm-subscription-refresh-dev='_exa_sm_refresh dev'
 alias sm-subscription-refresh-preview='_exa_sm_refresh preview'
 alias sm-subscription-refresh-prod='_exa_sm_refresh prod'
+
 # billwerk api
+alias bw-dev="_exa_bw dev"
+# billwerk cache service api
 alias bwc-customer-dev="_exa_bwc_customer dev"
 alias bwc-customer-preview="_exa_bwc_customer preview"
 alias bwc-customer-prod="_exa_bwc_customer prod"
@@ -98,6 +101,9 @@ function _exa_jumphost() {
   fi
 }
 
+function jwt-decode() {
+  jq -R 'split(".") |.[0:2] | map(@base64d) | map(fromjson)' <<< $1
+}
 
 function _exa_dev_billwerk_redis() {
   _exa_jumphost logstash -L16010:billwerk-cache-service-cache.csp7th.0001.euc1.cache.amazonaws.com:6380
@@ -118,6 +124,17 @@ function _exa_tunnel() {
 
 function _exa_fix_author() {
   git config user.email "marc.weinberger@extern.exaring.de"
+}
+
+function _exa_auth_token() {
+  if [[ $# -lt 3 ]]; then
+    echo "Usage: $0 env username password"
+  else
+    local host=$(_exa_host "$1")
+    local username="$2"
+    local password="$3"
+    https --follow POST "auth.${host}/oauth/token?grant_type=password&username=${username}&password=${password}"
+  fi
 }
 
 function _exa_users() {
@@ -168,7 +185,7 @@ function _exa_bwc_customer() {
     local host=$(_exa_host $1)
     local customer=$2
     shift 2
-    https -a $BW_AUTH billwerk-cache-service.$host/api/v1/Customers/$customer $@
+    https -a $BWC_AUTH billwerk-cache-service.$host/api/v1/Customers/$customer $@
   fi
 }
 
@@ -179,7 +196,7 @@ function _exa_bwc_contract() {
     local host=$(_exa_host $1)
     local contract=$2
     shift 2
-    https -a $BW_AUTH billwerk-cache-service.$host/api/v1/Contracts/$contract$@
+    https -a $BWC_AUTH billwerk-cache-service.$host/api/v1/Contracts/$contract$@
   fi
 }
 
@@ -190,9 +207,32 @@ function _exa_bwc_contract_refresh() {
     local host=$(_exa_host $1)
     local contract=$2
     shift 2
-    https -v -a $BW_AUTH POST "billwerk-cache-service.$host/api/v1/Contracts/$contract/refresh?ensureBillwerkRefresh=true"
+    https -v -a $BWC_AUTH POST "billwerk-cache-service.$host/api/v1/Contracts/$contract/refresh?ensureBillwerkRefresh=true"
   fi
 }
+
+function _exa_bw_auth_token() {
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 env"
+  elif [[ -z ${BILLWERK_TOKEN} ]]; then
+    export BILLWERK_TOKEN="$(https -a ${BILLWERK_AUTH} --form POST 'exaring-dev.billwerk.com/oauth/token' 'grant_type=client_credentials' | jq -r '.access_token')"
+  else
+    echo "Using existing billwerk token"
+  fi
+}
+
+function _exa_bw() {
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 env method"
+  else
+    local host=$(_exa_host $1)
+    local method="${2:-GET}"
+    shift 2
+    _exa_bw_auth_token $host
+    https -A bearer -a $BILLWERK_TOKEN $method exaring-dev.billwerk.com$@
+  fi
+}
+
 
 function _exa_product_config() {
   if [[ $# -lt 1 ]]; then

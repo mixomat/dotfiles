@@ -72,5 +72,8 @@ export LANG="en_US.UTF-8"
 
 
 #Auto-Complete function for AWSume
-fpath=(~/.awsume/zsh-autocomplete/ $fpath)
+export fpath=(~/.awsume/zsh-autocomplete/ $fpath)
+
+export FPATH="${HOMEBREW_PREFIX}/share/zsh/site-functions:${FPATH}"
+
 
