@@ -217,7 +217,6 @@ function _exa_bw_auth_token() {
   elif [[ -z ${BILLWERK_TOKEN} ]]; then
     export BILLWERK_TOKEN="$(https -a ${BILLWERK_AUTH} --form POST 'exaring-dev.billwerk.com/oauth/token' 'grant_type=client_credentials' | jq -r '.access_token')"
   else
-    echo "Using existing billwerk token"
   fi
 }
 
