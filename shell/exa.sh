@@ -9,7 +9,6 @@ export EXA_USER="marc.weinberger"
 export EXA_PROJECTS="${HOME}/projects/exaring"
 export EXA_OPEN="open"
 export PATH="${PATH}:${EXA_PROJECTS}/exaring-env/bin:${EXA_PROJECTS}/_scripts"
-
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ALIASES            #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -47,6 +46,7 @@ alias sm-subscription-refresh-prod='_exa_sm_refresh prod'
 
 # billwerk api
 alias bw-dev="_exa_bw dev"
+alias bw-prod="_exa_bw prod"
 # billwerk cache service api
 alias bwc-customer-dev="_exa_bwc_customer dev"
 alias bwc-customer-preview="_exa_bwc_customer preview"
@@ -215,7 +215,9 @@ function _exa_bw_auth_token() {
   if [[ $# -lt 1 ]]; then
     echo "Usage: $0 env"
   elif [[ -z ${BILLWERK_TOKEN} ]]; then
-    export BILLWERK_TOKEN="$(https -a ${BILLWERK_AUTH} --form POST 'exaring-dev.billwerk.com/oauth/token' 'grant_type=client_credentials' | jq -r '.access_token')"
+    local host=$(_bw_host $1)
+    local credentials=$(_bw_credentials $1)
+    export BILLWERK_TOKEN="$(https -a ${credentials} --form POST ${host}/oauth/token 'grant_type=client_credentials' | jq -r '.access_token')"
   else
   fi
 }
@@ -224,11 +226,11 @@ function _exa_bw() {
   if [[ $# -lt 1 ]]; then
     echo "Usage: $0 env method"
   else
-    local host=$(_exa_host $1)
+    local host=$(_bw_host $1)
     local method="${2:-GET}"
+    _exa_bw_auth_token $1
     shift 2
-    _exa_bw_auth_token $host
-    https -A bearer -a $BILLWERK_TOKEN $method exaring-dev.billwerk.com$@
+    https -A bearer -a $BILLWERK_TOKEN $method "${host}${@}"
   fi
 }
 
@@ -278,6 +280,39 @@ function _exa_host() {
       ;;
     "prod")
       echo "waipu.tv"
+      ;;
+    *)
+      echo "invalid environment: $1"
+      return 1
+      ;;
+  esac
+}
+
+function _bw_host() {
+  case $1 in
+    "dev")
+      echo "exaring-dev.billwerk.com"
+      ;;
+    "preview")
+      echo "exaring-dev.billwerk.com"
+      ;;
+    "prod")
+      echo "exaring.billwerk.com"
+      ;;
+    *)
+      echo "invalid environment: $1"
+      return 1
+      ;;
+  esac
+}
+
+function _bw_credentials() {
+  case $1 in
+    "dev")
+      echo $BILLWERK_AUTH
+      ;;
+    "prod")
+      echo $BILLWERK_AUTH_PROD
       ;;
     *)
       echo "invalid environment: $1"
