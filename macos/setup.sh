@@ -35,12 +35,17 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 defaults write com.apple.dock tilesize -int 36
 
 # Minimize to application in Dock
-defaults write com.apple.dock minimize-to-application -bool true
+defaults write com.apple.dock minimize-to-application -bool false
 
 # Automatically hide and show the Dock
 defaults write com.apple.dock autohide -bool true
 defaults write com.apple.dock autohide-delay -float 0.1
 defaults write com.apple.dock autohide-time-modifier -int 0.1
+
+# Disable animations
+defaults write com.apple.dock expose-animation-duration -float 0
+defaults write com.apple.dock launchanim -bool false
+defaults write com.apple.dock mineffect -string "scale"
 
 # Make Dock icons of hidden applications translucent
 defaults write com.apple.dock showhidden -bool true
