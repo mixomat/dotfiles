@@ -173,8 +173,9 @@ function _exa_sm_service() {
     echo "Usage: $0 env path"
   else
     local host=$(_exa_host "$1")
-    shift 1
-    https -v -a "$SM_AUTH" subscription-management.int.${host}$@ Accept:" */*"
+    local method="${2:-GET}"
+    shift 2
+    https -v -a "$SM_AUTH" $method "subscription-management.int.${host}$@"
   fi
 }
 
@@ -223,8 +224,8 @@ function _exa_bw_auth_token() {
 }
 
 function _exa_bw() {
-  if [[ $# -lt 1 ]]; then
-    echo "Usage: $0 env method"
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env method path"
   else
     local host=$(_bw_host $1)
     local method="${2:-GET}"
