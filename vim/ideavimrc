@@ -3,6 +3,10 @@ Plug 'tpope/vim-surround'
 Plug 'preservim/nerdtree'
 Plug 'tpope/vim-commentary'
 
+"" IDEA options ---------------------------
+set ideajoin
+set ideamarks
+
 "" Common options ---------------------------
 set showmode
 set scrolloff=5
@@ -21,7 +25,6 @@ map <leader>o <Action>(FileStructurePopup)
 map <leader>z <Action>(ToggleDistractionFreeMode)
 map <leader>b <Action>(ToggleLineBreakpoint)
 map <leader>f <Action>(ReformatCode)
-"" map <leader>t :NERDTreeToggle<CR>
 
 
 map <leader>tt <Action>(Refactorings.QuickListPopupAction)
