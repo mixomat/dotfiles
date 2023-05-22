@@ -25,10 +25,6 @@ alias unsetAWS="awsume -u"
 alias fixauthor="_exa_fix_author"
 alias tag-deploy="_exa_tag_deploy"
 
-# db tunnel
-alias db-users-dev="_exa_tunnel dev 5555:exaring-dev-users-encrypted-db.cqegwlhlos6b.eu-central-1.rds.amazonaws.com:5432 promstack"
-alias db-users-prod="_exa_tunnel prod 6666:exaring-prod-users-encrypted-db.ccgynvk3looc.eu-central-1.rds.amazonaws.com:5432 promstack"
-
 # user-ng api
 alias users-dev='_exa_users dev'
 alias users-preview='_exa_users preview'
@@ -43,6 +39,14 @@ alias sm-subscription-prod='_exa_sm_subscription prod'
 alias sm-subscription-refresh-dev='_exa_sm_refresh dev'
 alias sm-subscription-refresh-preview='_exa_sm_refresh preview'
 alias sm-subscription-refresh-prod='_exa_sm_refresh prod'
+#auth api
+alias auth-dev='_exa_auth_service dev'
+alias auth-preview='_exa_auth_service preview'
+alias auth-prod='_exa_auth_service prod'
+# access-control
+alias assets-dev="_exa_assets dev"
+alias assets-preview="_exa_assets preview"
+alias assets-prod="_exa_assets prod"
 
 # billwerk api
 alias bw-dev="_exa_bw dev"
@@ -57,15 +61,16 @@ alias bwc-contract-prod="_exa_bwc_contract prod"
 alias bwc-contract-refresh-dev="_exa_bwc_contract_refresh dev"
 alias bwc-contract-refresh-preview="_exa_bwc_contract_refresh preview"
 alias bwc-contract-refresh-prod="_exa_bwc_contract_refresh prod"
+
 # product-configuration api
 alias product-config-dev="_exa_product_config dev"
 alias product-config-preview="_exa_product_config preview"
 alias product-config-prod="_exa_product_config prod"
-# access-control
-alias assets-dev="_exa_assets dev"
-alias assets-preview="_exa_assets preview"
-alias assets-prod="_exa_assets prod"
 
+# product-subscription api
+alias product-subscription-dev="_exa_product_subscription dev"
+alias product-subscription-preview="_exa_product_subscription preview"
+alias product-subscription-prod="_exa_product_subscription prod"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -103,10 +108,6 @@ function _exa_jumphost() {
 
 function jwt-decode() {
   jq -R 'split(".") |.[0:2] | map(@base64d) | map(fromjson)' <<< $1
-}
-
-function _exa_dev_billwerk_redis() {
-  _exa_jumphost logstash -L16010:billwerk-cache-service-cache.csp7th.0001.euc1.cache.amazonaws.com:6380
 }
 
 function _exa_tunnel() {
@@ -179,6 +180,17 @@ function _exa_sm_service() {
   fi
 }
 
+function _exa_auth_service() {
+  if [[ $# -lt 3 ]]; then
+    echo "Usage: $0 env method path"
+  else
+    local host=$(_exa_host "$1")
+    local method="${2:-GET}"
+    shift 2
+    https -v -a "$AUTH_AUTH" $method "auth.${host}$@"
+  fi
+}
+
 function _exa_bwc_customer() {
   if [[ $# -lt 2 ]]; then
     echo "Usage: $0 env customer"
@@ -243,6 +255,27 @@ function _exa_product_config() {
     local host=$(_exa_host $1)
     shift 1
     https -a $PC_AUTH product-configuration.int.$host/api/sales-bundles/$@
+  fi
+}
+
+function _exa_product_subscription() {
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 env (product)"
+  else
+    local host=$(_exa_host $1)
+    shift 1
+    https -a $PS_AUTH product-subscription.int.$host/api/products/$@
+  fi
+}
+
+function _exa_active_device() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env user"
+  else
+    local host=$(_exa_host $1)
+    local user=$2
+    shift 1
+    https -a $DM_AUTH device-management.int.$host/api/context/$user/active_devices
   fi
 }
 
