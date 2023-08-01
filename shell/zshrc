@@ -1,7 +1,7 @@
 # List of ZSH plugins to load is defined in $HOME/.zshenv
 plugins=($ZSH_PLUGINS[*])
 
-# Simply source file if readable
+# Source file if readable
 function source_file() {
   local file="$1"
   [ -r "$file" ] && . "$file"
@@ -24,11 +24,11 @@ if [[ $- == *i* && -f $FZF_COMPLETION ]]; then
   source $FZF_COMPLETION 2> /dev/null
 fi
 
-# volta
-[[ -s "$VOLTA_HOME" ]] && export PATH="$VOLTA_HOME/bin:$PATH"
-
 # homebrew
 [[ -s "$HOMEBREW_PREFIX" ]] && export PATH="$HOMEBREW_PREFIX/bin:$HOMEBREW_PREFIX/sbin:$PATH"
+
+# volta (must be after homebrew to work)
+[[ -s "$VOLTA_HOME" ]] && export PATH="$VOLTA_HOME/bin:$PATH"
 
 # SDKMAN (THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!)
 [[ -s "$SDKMAN_INIT" ]] && source "$SDKMAN_INIT"

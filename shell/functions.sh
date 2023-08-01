@@ -25,11 +25,18 @@ function decode_secret() {
   fi
 }
 
-function base64decode() {
+function b64dec() {
   if [ $# -eq 1 ]; then
     echo -n "$1" | base64 -D
   else
-    echo "usage: base64decode <encoded>"
+    echo "usage: base64dec <encoded>"
   fi
 }
 
+function b64enc() {
+  if [ $# -eq 1 ]; then
+    echo -n "$1" | base64
+  else
+    echo "usage: b64enc <decoded>"
+  fi
+}
