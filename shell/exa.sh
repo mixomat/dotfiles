@@ -29,10 +29,16 @@ alias tag-deploy="_exa_tag_deploy"
 alias users-dev='_exa_users dev'
 alias users-preview='_exa_users preview'
 alias users-prod='_exa_users prod'
+alias users-email-dev='_exa_users_email dev'
+alias users-email-preview='_exa_users_email preview'
+alias users-email-prod='_exa_users_email prod'
 # subscription-management api
 alias sm-dev='_exa_sm_service dev'
 alias sm-preview='_exa_sm_service preview'
 alias sm-prod='_exa_sm_service prod'
+alias booking-dev='_exa_booking_service dev'
+alias booking-preview='_exa_booking_service preview'
+alias booking-prod='_exa_booking_service prod'
 alias sm-subscription-dev='_exa_sm_subscription dev'
 alias sm-subscription-preview='_exa_sm_subscription preview'
 alias sm-subscription-prod='_exa_sm_subscription prod'
@@ -71,6 +77,11 @@ alias product-config-prod="_exa_product_config prod"
 alias product-subscription-dev="_exa_product_subscription dev"
 alias product-subscription-preview="_exa_product_subscription preview"
 alias product-subscription-prod="_exa_product_subscription prod"
+
+# device-api
+alias device-api-dev="_exa_device_api dev"
+alias device-api-preview="_exa_device_api preview"
+alias device-api-prod="_exa_device_api prod"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -146,7 +157,17 @@ function _exa_users() {
     local userHandle="$2"
     https -a "$USERS_AUTH" users.int.${host}/api/users/$userHandle 
   fi
+}
 
+function _exa_users_email() {
+  if [[ $# -lt 3 ]]; then
+    echo "Usage: $0 env userHandle|email newEmail"
+  else
+    local host=$(_exa_host "$1")
+    local userHandle="$2"
+    local email="$3"
+    https -a "$USERS_AUTH" PATCH users.int.${host}/api/users/$userHandle email=$email "Content-Type:application/vnd.waipu.users-email-without-password-v1+json"
+  fi
 }
 
 function _exa_sm_subscription() {
@@ -177,6 +198,17 @@ function _exa_sm_service() {
     local method="${2:-GET}"
     shift 2
     https -v -a "$SM_AUTH" $method "subscription-management.int.${host}$@"
+  fi
+}
+
+function _exa_booking_service() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env path"
+  else
+    local host=$(_exa_host "$1")
+    local method="${2:-GET}"
+    shift 2
+    https -v -a "$BOOKING_AUTH" $method "booking.${host}$@"
   fi
 }
 
@@ -264,9 +296,10 @@ function _exa_product_subscription() {
   else
     local host=$(_exa_host $1)
     shift 1
-    https -a $PS_AUTH product-subscription.int.$host/api/products/$@
+    https -a $PS_AUTH product-subscription.int.$host$@
   fi
 }
+
 
 function _exa_active_device() {
   if [[ $# -lt 2 ]]; then
@@ -274,8 +307,18 @@ function _exa_active_device() {
   else
     local host=$(_exa_host $1)
     local user=$2
-    shift 1
     https -a $DM_AUTH device-management.int.$host/api/context/$user/active_devices
+  fi
+}
+
+function _exa_device_api() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env token"
+  else
+    local host=$(_exa_host $1)
+    local token=$2
+    shift 2
+    https -A bearer -a $token device-api.$host$@
   fi
 }
 
