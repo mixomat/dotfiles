@@ -49,6 +49,7 @@ alias sm-subscription-refresh-prod='_exa_sm_refresh prod'
 alias auth-dev='_exa_auth_service dev'
 alias auth-preview='_exa_auth_service preview'
 alias auth-prod='_exa_auth_service prod'
+alias auth-token-dev='_exa_auth_token dev'
 # access-control
 alias assets-dev="_exa_assets dev"
 alias assets-preview="_exa_assets preview"
@@ -220,6 +221,17 @@ function _exa_auth_service() {
     local method="${2:-GET}"
     shift 2
     https -v -a "$AUTH_AUTH" $method "auth.${host}$@"
+  fi
+}
+
+function _exa_auth_service() {
+  if [[ $# -lt 3 ]]; then
+    echo "Usage: $0 env user password"
+  else
+    local host=$(_exa_host "$1")
+    local user=$2
+    local password=$3
+    https --form POST "auth.${host}/oauth/token" grant_type=password username=${user} password=${password} waipu_device_id="marc-local"
   fi
 }
 
