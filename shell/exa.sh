@@ -18,9 +18,9 @@ alias awsume=". awsume"
 alias exadev="awsume dev && export TF_BUCKET=dev.terraform.exaring && export TF_KEY=aws-development"
 alias exaprev="awsume prev && export TF_BUCKET=preview.terraform.exaring && export TF_KEY=aws-preview"
 alias exaprod="awsume prod && export TF_BUCKET=prod.terraform.exaring && export TF_KEY=aws-production"
-alias kdev="exadev && kx arn:aws:eks:eu-central-1:873929438979:cluster/bs-k-dev-v1"
-alias kprev="exaprev && kx arn:aws:eks:eu-central-1:157635668512:cluster/bs-k-preview-v1"
-alias kprod="exaprod && kx arn:aws:eks:eu-central-1:802129380100:cluster/bs-k-prod-v1"
+alias kdev="kx arn:aws:eks:eu-central-1:873929438979:cluster/bs-k-dev-v1"
+alias kprev="kx arn:aws:eks:eu-central-1:157635668512:cluster/bs-k-preview-v1"
+alias kprod="kx arn:aws:eks:eu-central-1:802129380100:cluster/bs-k-prod-v1"
 alias unsetAWS="awsume -u"
 alias fixauthor="_exa_fix_author"
 alias tag-deploy="_exa_tag_deploy"
@@ -83,6 +83,11 @@ alias product-subscription-prod="_exa_product_subscription prod"
 alias device-api-dev="_exa_device_api dev"
 alias device-api-preview="_exa_device_api preview"
 alias device-api-prod="_exa_device_api prod"
+
+# audit
+alias audit-dev="_exa_audit dev"
+alias audit-preview="_exa_audit preview"
+alias audit-prod="_exa_audit prod"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -209,7 +214,7 @@ function _exa_booking_service() {
     local host=$(_exa_host "$1")
     local method="${2:-GET}"
     shift 2
-    https -v -a "$BOOKING_AUTH" $method "booking.${host}$@"
+    https -v $method "booking.${host}$@"
   fi
 }
 
@@ -303,11 +308,11 @@ function _exa_product_config() {
 }
 
 function _exa_product_subscription() {
-  if [[ $# -lt 1 ]]; then
-    echo "Usage: $0 env (product)"
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env method path"
   else
     local host=$(_exa_host $1)
-    shift 1
+    shift 2
     https -a $PS_AUTH product-subscription.int.$host$@
   fi
 }
@@ -331,6 +336,16 @@ function _exa_device_api() {
     local token=$2
     shift 2
     https -A bearer -a $token device-api.$host$@
+  fi
+}
+
+function _exa_audit() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env method path"
+  else
+    local host=$(_exa_host $1)
+    shift 2
+    https -a $AUDIT_AUTH audit.int.$host$@
   fi
 }
 
