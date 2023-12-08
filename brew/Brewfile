@@ -163,3 +163,4 @@ cask "bluos-controller"
 
 # App Store 
 mas "Flow", id: 1423210932
+mas "tailscale", id:1475387142
