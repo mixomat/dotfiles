@@ -160,6 +160,7 @@ cask "microsoft-auto-update"
 cask "cloudflare-warp"
 cask "postman"
 cask "bluos-controller"
+cask "the-unarchiver"
 
 # App Store 
 mas "Flow", id: 1423210932

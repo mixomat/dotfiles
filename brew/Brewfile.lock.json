@@ -6172,6 +6172,12 @@
         "options": {
           "full_name": "bluos-controller"
         }
+      },
+      "the-unarchiver": {
+        "version": "4.3.6,143,1697809946",
+        "options": {
+          "full_name": "the-unarchiver"
+        }
       }
     },
     "mas": {
