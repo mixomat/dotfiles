@@ -17,7 +17,7 @@ alias exacommit="git config user.email 'marc.weinberger@extern.exaring.de'"
 alias awsume=". awsume"
 alias exadev="awsume dev && export TF_BUCKET=dev.terraform.exaring && export TF_KEY=aws-development"
 alias exaprev="awsume prev && export TF_BUCKET=preview.terraform.exaring && export TF_KEY=aws-preview"
-alias exaprod="awsume prod && export TF_BUCKET=prod.terraform.exaring && export TF_KEY=aws-production"
+alias exaprod="awsume prod" 
 alias kdev="kx arn:aws:eks:eu-central-1:873929438979:cluster/bs-k-dev-v1"
 alias kprev="kx arn:aws:eks:eu-central-1:157635668512:cluster/bs-k-preview-v1"
 alias kprod="kx arn:aws:eks:eu-central-1:802129380100:cluster/bs-k-prod-v1"
@@ -75,9 +75,9 @@ alias product-config-preview="_exa_product_config preview"
 alias product-config-prod="_exa_product_config prod"
 
 # product-subscription api
-alias product-subscription-dev="_exa_product_subscription dev"
-alias product-subscription-preview="_exa_product_subscription preview"
-alias product-subscription-prod="_exa_product_subscription prod"
+alias product-subscription-dev="_exa_int_service dev product-subscription $PS_AUTH_DEV"
+alias product-subscription-preview="_exa_int_service preview product-subscription $PS_AUTH_PREVIEW"
+alias product-subscription-prod="_exa_int_service prord product-subscription $PS_AUTH_PROD"
 
 # device-api
 alias device-api-dev="_exa_device_api dev"
@@ -88,6 +88,11 @@ alias device-api-prod="_exa_device_api prod"
 alias audit-dev="_exa_audit dev"
 alias audit-preview="_exa_audit preview"
 alias audit-prod="_exa_audit prod"
+
+# sales-token
+alias sales-tokens-dev="_exa_int_service dev sales-tokens $ST_AUTH"
+alias sales-tokens-preview="_exa_int_service preview sales-tokens $ST_AUTH"
+alias sales-tokens-prod="_exa_int_service prod sales-tokens $ST_AUTH"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -307,16 +312,6 @@ function _exa_product_config() {
   fi
 }
 
-function _exa_product_subscription() {
-  if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 env method path"
-  else
-    local host=$(_exa_host $1)
-    shift 2
-    https -a $PS_AUTH product-subscription.int.$host$@
-  fi
-}
-
 
 function _exa_active_device() {
   if [[ $# -lt 2 ]]; then
@@ -357,6 +352,19 @@ function _exa_assets() {
     local user=$2
     shift 2
     https -a $ACCESS_AUTH "access-control.$host/api/users/$user/assets"
+  fi
+}
+
+function _exa_int_service() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env service auth method args..."
+  else
+    local host=$(_exa_host $1)
+    local service=$2
+    local auth=$3
+    local method=$4
+    shift 4
+    https -a $auth $method $service.int.$host$@
   fi
 }
 

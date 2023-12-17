@@ -27,6 +27,7 @@ alias path='echo -e ${PATH//:/\\n}'
 alias decode64='base64 -D'
 alias wolman='wakeonlan 3c:7c:3f:7d:a7:d3'
 alias timestamp='date -r'
+alias date='gdate'
 
 # git
 alias g='git'
