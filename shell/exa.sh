@@ -32,42 +32,37 @@ alias users-prod='_exa_users prod'
 alias users-email-dev='_exa_users_email dev'
 alias users-email-preview='_exa_users_email preview'
 alias users-email-prod='_exa_users_email prod'
+
 # subscription-management api
 alias sm-dev='_exa_sm_service dev'
 alias sm-preview='_exa_sm_service preview'
 alias sm-prod='_exa_sm_service prod'
-alias booking-dev='_exa_booking_service dev'
-alias booking-preview='_exa_booking_service preview'
-alias booking-prod='_exa_booking_service prod'
 alias sm-subscription-dev='_exa_sm_subscription dev'
 alias sm-subscription-preview='_exa_sm_subscription preview'
 alias sm-subscription-prod='_exa_sm_subscription prod'
 alias sm-subscription-refresh-dev='_exa_sm_refresh dev'
 alias sm-subscription-refresh-preview='_exa_sm_refresh preview'
 alias sm-subscription-refresh-prod='_exa_sm_refresh prod'
+
 #auth api
 alias auth-dev='_exa_auth_service dev'
 alias auth-preview='_exa_auth_service preview'
 alias auth-prod='_exa_auth_service prod'
 alias auth-token-dev='_exa_auth_token dev'
+
 # access-control
 alias assets-dev="_exa_assets dev"
 alias assets-preview="_exa_assets preview"
 alias assets-prod="_exa_assets prod"
 
+# booking
+alias booking-dev='_exa_booking_service dev'
+alias booking-preview='_exa_booking_service preview'
+alias booking-prod='_exa_booking_service prod'
+
 # billwerk api
 alias bw-dev="_exa_bw dev"
 alias bw-prod="_exa_bw prod"
-# billwerk cache service api
-alias bwc-customer-dev="_exa_bwc_customer dev"
-alias bwc-customer-preview="_exa_bwc_customer preview"
-alias bwc-customer-prod="_exa_bwc_customer prod"
-alias bwc-contract-dev="_exa_bwc_contract dev"
-alias bwc-contract-preview="_exa_bwc_contract preview"
-alias bwc-contract-prod="_exa_bwc_contract prod"
-alias bwc-contract-refresh-dev="_exa_bwc_contract_refresh dev"
-alias bwc-contract-refresh-preview="_exa_bwc_contract_refresh preview"
-alias bwc-contract-refresh-prod="_exa_bwc_contract_refresh prod"
 
 # product-configuration api
 alias product-config-dev="_exa_product_config dev"
@@ -78,6 +73,11 @@ alias product-config-prod="_exa_product_config prod"
 alias product-subscription-dev="_exa_int_service dev product-subscription $PS_AUTH_DEV"
 alias product-subscription-preview="_exa_int_service preview product-subscription $PS_AUTH_PREVIEW"
 alias product-subscription-prod="_exa_int_service prord product-subscription $PS_AUTH_PROD"
+
+# bwpgw
+alias bwpgw-dev="_exa_int_service dev billwerk-partner-gateway $BWPGW_AUTH_DEV"
+alias bwpgw-preview="_exa_int_service preview billwerk-partner-gateway $BWPGW_AUTH_PREVIEW"
+alias bwpgw-prod="_exa_int_service prod billwerk-partner-gateway $BWPGW_AUTH_PROD"
 
 # device-api
 alias device-api-dev="_exa_device_api dev"
@@ -356,8 +356,8 @@ function _exa_assets() {
 }
 
 function _exa_int_service() {
-  if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 env service auth method args..."
+  if [[ $# -lt 4 ]]; then
+    echo "Usage: $0 env service-name auth method args..."
   else
     local host=$(_exa_host $1)
     local service=$2
