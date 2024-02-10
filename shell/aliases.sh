@@ -41,7 +41,7 @@ alias glab-mr-draft='glab mr create -f -y --draft --push --squash-before-merge -
 
 # docker
 alias d='docker'
-alias dcom='docker-compose'
+alias dcom='docker compose'
 
 # k8s
 alias k='kubectl'
