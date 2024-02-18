@@ -26,6 +26,8 @@ create_symlinks() {
 
         "vim/vimrc"
         "vim/ideavimrc"
+
+        "tmux/tmux.conf"
     )
 
     local i=""
