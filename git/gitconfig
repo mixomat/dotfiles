@@ -31,8 +31,6 @@
 	clean = git lfs clean %f
 	smudge = git lfs smudge %f
 	required = true
-[credential]
-	helper = osxkeychain
 [diff]
 	tool = vimdiff
 [difftool]
@@ -43,3 +41,9 @@
 	defaultBranch = main
 [url "git@git.exaring.net:"]
 	insteadOf = https://git.exaring.net
+[credential "https://github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[credential "https://gist.github.com"]
+	helper = !/usr/bin/gh auth git-credential
+[credential]
+        helper = osxkeychain
