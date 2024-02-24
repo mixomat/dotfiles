@@ -72,7 +72,7 @@ alias product-config-prod="_exa_product_config prod"
 # product-subscription api
 alias product-subscription-dev="_exa_int_service dev product-subscription $PS_AUTH_DEV"
 alias product-subscription-preview="_exa_int_service preview product-subscription $PS_AUTH_PREVIEW"
-alias product-subscription-prod="_exa_int_service prord product-subscription $PS_AUTH_PROD"
+alias product-subscription-prod="_exa_int_service prod product-subscription $PS_AUTH_PROD"
 
 # bwpgw
 alias bwpgw-dev="_exa_int_service dev billwerk-partner-gateway $BWPGW_AUTH_DEV"
@@ -93,6 +93,11 @@ alias audit-prod="_exa_audit prod"
 alias sales-tokens-dev="_exa_int_service dev sales-tokens $ST_AUTH"
 alias sales-tokens-preview="_exa_int_service preview sales-tokens $ST_AUTH"
 alias sales-tokens-prod="_exa_int_service prod sales-tokens $ST_AUTH"
+
+# activation
+alias activation-dev="_exa_service dev activation $ACTIVATION_AUTH"
+alias activation-preview="_exa_service preview activation $ACTIVATION_AUTH"
+alias activation-prod="_exa_service prod activation $ACTIVATION_AUTH"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -208,7 +213,7 @@ function _exa_sm_service() {
     local host=$(_exa_host "$1")
     local method="${2:-GET}"
     shift 2
-    https -v -a "$SM_AUTH" $method "subscription-management.int.${host}$@"
+    https -a "$SM_AUTH" $method "subscription-management.int.${host}$@"
   fi
 }
 
@@ -219,7 +224,7 @@ function _exa_booking_service() {
     local host=$(_exa_host "$1")
     local method="${2:-GET}"
     shift 2
-    https -v $method "booking.${host}$@"
+    https $method "booking.${host}$@"
   fi
 }
 
@@ -365,6 +370,19 @@ function _exa_int_service() {
     local method=$4
     shift 4
     https -a $auth $method $service.int.$host$@
+  fi
+}
+
+function _exa_service() {
+  if [[ $# -lt 4 ]]; then
+    echo "Usage: $0 env service-name auth method args..."
+  else
+    local host=$(_exa_host $1)
+    local service=$2
+    local auth=$3
+    local method=$4
+    shift 4
+    https -a $auth $method $service.$host$@
   fi
 }
 
