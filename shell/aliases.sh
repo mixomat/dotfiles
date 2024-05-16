@@ -52,3 +52,6 @@ alias kubesealraw='kubeseal --raw --from-file=/dev/stdin --controller-namespace 
 alias fluxctl='fluxctl --k8s-fwd-ns gitops'
 alias h='helm'
 
+
+# aws
+alias aws-local='aws --endpoint-url=http://localhost:4566'

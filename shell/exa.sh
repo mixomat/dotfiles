@@ -73,6 +73,9 @@ alias product-config-prod="_exa_product_config prod"
 alias product-subscription-dev="_exa_int_service dev product-subscription $PS_AUTH_DEV"
 alias product-subscription-preview="_exa_int_service preview product-subscription $PS_AUTH_PREVIEW"
 alias product-subscription-prod="_exa_int_service prod product-subscription $PS_AUTH_PROD"
+alias ps-dev="_exa_ps dev $PS_AUTH_DEV"
+alias ps-preview="_exa_ps preview $PS_AUTH_PREVIEW"
+alias ps-prod="_exa_ps prod $PS_AUTH_PROD"
 
 # bwpgw
 alias bwpgw-dev="_exa_int_service dev billwerk-partner-gateway $BWPGW_AUTH_DEV"
@@ -98,6 +101,11 @@ alias sales-tokens-prod="_exa_int_service prod sales-tokens $ST_AUTH"
 alias activation-dev="_exa_service dev activation $ACTIVATION_AUTH"
 alias activation-preview="_exa_service preview activation $ACTIVATION_AUTH"
 alias activation-prod="_exa_service prod activation $ACTIVATION_AUTH"
+
+# order-management
+alias order-management-dev="_exa_int_service dev order-management $OM_AUTH"
+alias order-management-preview="_exa_int_service preview order-management $OM_AUTH"
+alias order-management-prod="_exa_int_service prod order-management $OM_AUTH"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -357,6 +365,18 @@ function _exa_assets() {
     local user=$2
     shift 2
     https -a $ACCESS_AUTH "access-control.$host/api/users/$user/assets"
+  fi
+}
+
+function _exa_ps() {
+  if [[ $# -lt 3 ]]; then
+    echo "Usage: $0 env auth user"
+  else
+    local host=$(_exa_host $1)
+    local auth=$2
+    local user=$3
+    shift 3
+    https -a $auth GET product-subscription.int.$host/api/subscriptions/$user
   fi
 }
 
