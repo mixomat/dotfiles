@@ -11,7 +11,7 @@ export EXA_OPEN="open"
 export PATH="${PATH}:${EXA_PROJECTS}/exaring-env/bin:${EXA_PROJECTS}/_scripts"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ALIASES            #
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~#
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
 alias exap="_exap"
 alias exacommit="git config user.email 'marc.weinberger@extern.exaring.de'"
 alias awsume=". awsume"
@@ -106,6 +106,17 @@ alias activation-prod="_exa_service prod activation $ACTIVATION_AUTH"
 alias order-management-dev="_exa_int_service dev order-management $OM_AUTH"
 alias order-management-preview="_exa_int_service preview order-management $OM_AUTH"
 alias order-management-prod="_exa_int_service prod order-management $OM_AUTH"
+
+# netflix
+alias netflix-dev="_exa_int_service dev netflix $NETFLIX_AUTH"
+alias netflix-preview="_exa_int_service preview netflix $NETFLIX_AUTH"
+alias netflix-prod="_exa_int_service prod netflix $NETFLIX_AUTH"
+
+# device-management
+alias device-management-prod="_exa_int_service prod device-management $DM_AUTH"
+
+# event-query
+alias event-query="_exa_event_query"
 
 
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
@@ -377,6 +388,14 @@ function _exa_ps() {
     local user=$3
     shift 3
     https -a $auth GET product-subscription.int.$host/api/subscriptions/$user
+  fi
+}
+
+function _exa_event_query() {
+  if [[ $# -lt 1 ]]; then
+    echo "Usage: $0 userHandle"
+  else
+    https -a $EQ_AUTH event-query.waipu-dev.net/api/event-query userHandle==$1
   fi
 }
 
