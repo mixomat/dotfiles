@@ -32,6 +32,7 @@ alias users-prod='_exa_users prod'
 alias users-email-dev='_exa_users_email dev'
 alias users-email-preview='_exa_users_email preview'
 alias users-email-prod='_exa_users_email prod'
+alias users-rm-dev='_exa_users_rm dev'
 
 # subscription-management api
 alias sm-dev='_exa_sm_service dev'
@@ -49,11 +50,8 @@ alias auth-dev='_exa_auth_service dev'
 alias auth-preview='_exa_auth_service preview'
 alias auth-prod='_exa_auth_service prod'
 alias auth-token-dev='_exa_auth_token dev'
-
-# access-control
-alias assets-dev="_exa_assets dev"
-alias assets-preview="_exa_assets preview"
-alias assets-prod="_exa_assets prod"
+alias auth-token-preview='_exa_auth_token preview'
+alias auth-token-prod='_exa_auth_token prod'
 
 # booking
 alias booking-dev='_exa_booking_service dev'
@@ -63,11 +61,6 @@ alias booking-prod='_exa_booking_service prod'
 # billwerk api
 alias bw-dev="_exa_bw dev"
 alias bw-prod="_exa_bw prod"
-
-# product-configuration api
-alias product-config-dev="_exa_product_config dev"
-alias product-config-preview="_exa_product_config preview"
-alias product-config-prod="_exa_product_config prod"
 
 # product-subscription api
 alias product-subscription-dev="_exa_int_service dev product-subscription $PS_AUTH_DEV"
@@ -112,7 +105,20 @@ alias netflix-dev="_exa_int_service dev netflix $NETFLIX_AUTH"
 alias netflix-preview="_exa_int_service preview netflix $NETFLIX_AUTH"
 alias netflix-prod="_exa_int_service prod netflix $NETFLIX_AUTH"
 
+# disney
+alias disney-dev="_exa_int_service dev disney-partner-gateway $DISNEY_AUTH_DEV"
+alias disney-preview="_exa_int_service preview disney-partner-gateway $DISNEY_AUTH_PREVIEW"
+alias disney-prod="_exa_int_service prod disney-partner-gateway $DISNEY_AUTH_PROD"
+
+# wow
+alias wow-dev="_exa_int_service dev wow-partner-gateway $WOW_AUTH_DEV"
+alias wow-preview="_exa_int_service preview wow-partner-gateway $WOW_AUTH_PREVIEW"
+alias wow-prod="_exa_int_service prod wow-partner-gateway $WOW_AUTH_PROD"
+
+
 # device-management
+alias device-management-dev="_exa_int_service dev device-management $DM_AUTH"
+alias device-management-preview="_exa_int_service preview device-management $DM_AUTH"
 alias device-management-prod="_exa_int_service prod device-management $DM_AUTH"
 
 # event-query
@@ -123,65 +129,13 @@ alias event-query="_exa_event_query"
 #       FUNCTIONS           #
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 
-function _exa_jumphost() {
-  local ec2_ip="$( \
-      aws ec2 describe-instances \
-          | jq -r '.Reservations[].Instances[]
-              | select(.Tags[]
-                | select(.Key == "Name")
-                | select(.Value | startswith("'$1'")))
-              | select(.State.Name == "running")
-              | "\(.Tags[] | select(.Key == "Name") | .Value): \(.PrivateIpAddress)"' \
-          | sort \
-          | bat -p --color=always -l yaml \
-          | fzf \
-              --ansi \
-              --min-height 20 \
-              --height ${FZF_TMUX_HEIGHT:-40%} \
-          | head -n 1 \
-          | awk -F'[: ]+' '{ print $2 }' \
-  )"
-
-  [[ -z "${ec2_ip}" ]] && return -2
-  if [[ "${2}" = "-" ]]; then
-      echo "${ec2_ip}"
-  else
-      [[ -n "${1}" ]] && shift
-      echo "ssh to ${ec2_ip} ${@}"
-      ssh "${ec2_ip}" "${@}"
-  fi
-}
-
 function jwt-decode() {
   jq -R 'split(".") |.[0:2] | map(@base64d) | map(fromjson)' <<< $1
 }
 
-function _exa_tunnel() {
-  if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 env tunnel (jumphost)"
-  else
-    local env=$1
-    local tunnel=$2
-    local jumphost="${3:-logstash}"
-
-    awsume $env
-    _exa_jumphost $jumphost -i $EXA_PROJECTS/exaring-secrets/ssh-keys/ec2-deploy -L $tunnel
-  fi
-}
 
 function _exa_fix_author() {
   git config user.email "marc.weinberger@extern.exaring.de"
-}
-
-function _exa_auth_token() {
-  if [[ $# -lt 3 ]]; then
-    echo "Usage: $0 env username password"
-  else
-    local host=$(_exa_host "$1")
-    local username="$2"
-    local password="$3"
-    https --follow POST "auth.${host}/oauth/token?grant_type=password&username=${username}&password=${password}"
-  fi
 }
 
 function _exa_users() {
@@ -202,6 +156,16 @@ function _exa_users_email() {
     local userHandle="$2"
     local email="$3"
     https -a "$USERS_AUTH" PATCH users.int.${host}/api/users/$userHandle email=$email "Content-Type:application/vnd.waipu.users-email-without-password-v1+json"
+  fi
+}
+
+function _exa_users_rm() {
+  if [[ $# -lt 2 ]]; then
+    echo "Usage: $0 env userHandle"
+  else
+    local host=$(_exa_host "$1")
+    local userHandle="$2"
+    https -a "$USERS_AUTH" DELETE users.int.${host}/api/users/$userHandle 
   fi
 }
 
@@ -258,7 +222,7 @@ function _exa_auth_service() {
   fi
 }
 
-function _exa_auth_service() {
+function _exa_auth_token() {
   if [[ $# -lt 3 ]]; then
     echo "Usage: $0 env user password"
   else
@@ -326,17 +290,6 @@ function _exa_bw() {
 }
 
 
-function _exa_product_config() {
-  if [[ $# -lt 1 ]]; then
-    echo "Usage: $0 env (salesBundle)"
-  else
-    local host=$(_exa_host $1)
-    shift 1
-    https -a $PC_AUTH product-configuration.int.$host/api/sales-bundles/$@
-  fi
-}
-
-
 function _exa_active_device() {
   if [[ $# -lt 2 ]]; then
     echo "Usage: $0 env user"
@@ -368,16 +321,6 @@ function _exa_audit() {
   fi
 }
 
-function _exa_assets() {
-  if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 env user"
-  else
-    local host=$(_exa_host $1)
-    local user=$2
-    shift 2
-    https -a $ACCESS_AUTH "access-control.$host/api/users/$user/assets"
-  fi
-}
 
 function _exa_ps() {
   if [[ $# -lt 3 ]]; then
