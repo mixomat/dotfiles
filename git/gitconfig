@@ -15,12 +15,15 @@
 	autocrlf = input
 [alias]
 	ci = commit
-        co = checkout
+	co = checkout
+	sw = switch
 	st = status
 	unstage = reset HEAD --
 	last = log -1 HEAD
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
 	d = difftool
+	wtl = worktree list
+	wta = worktree add
 [push]
 	default = simple
 [filter "media"]
@@ -46,4 +49,4 @@
 [credential "https://gist.github.com"]
 	helper = !/usr/bin/gh auth git-credential
 [credential]
-        helper = osxkeychain
+	helper = osxkeychain
