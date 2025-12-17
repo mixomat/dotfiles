@@ -11,13 +11,13 @@ export EXA_OPEN="open"
 export PATH="${PATH}:${EXA_PROJECTS}/exaring-env/bin:${EXA_PROJECTS}/_scripts"
 #~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 #        ALIASES            #
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~# 
+#~~~~~~~~~~~~~~~~~~~~~~~~~~~#
 alias exap="_exap"
 alias exacommit="git config user.email 'marc.weinberger@extern.exaring.de'"
 alias awsume=". awsume"
 alias exadev="awsume dev && export TF_BUCKET=dev.terraform.exaring && export TF_KEY=aws-development"
 alias exaprev="awsume prev && export TF_BUCKET=preview.terraform.exaring && export TF_KEY=aws-preview"
-alias exaprod="awsume prod" 
+alias exaprod="awsume prod"
 alias kdev="kx arn:aws:eks:eu-central-1:873929438979:cluster/bs-k-dev-v1"
 alias kprev="kx arn:aws:eks:eu-central-1:157635668512:cluster/bs-k-preview-v1"
 alias kprod="kx arn:aws:eks:eu-central-1:802129380100:cluster/bs-k-prod-v1"
@@ -60,6 +60,7 @@ alias booking-prod='_exa_booking_service prod'
 
 # billwerk api
 alias bw-dev="_exa_bw dev"
+alias bw-preview="_exa_bw preview"
 alias bw-prod="_exa_bw prod"
 
 # product-subscription api
@@ -144,7 +145,7 @@ function _exa_users() {
   else
     local host=$(_exa_host "$1")
     local userHandle="$2"
-    https -a "$USERS_AUTH" users.int.${host}/api/users/$userHandle 
+    https -a "$USERS_AUTH" users.int.${host}/api/users/$userHandle
   fi
 }
 
@@ -165,7 +166,7 @@ function _exa_users_rm() {
   else
     local host=$(_exa_host "$1")
     local userHandle="$2"
-    https -a "$USERS_AUTH" DELETE users.int.${host}/api/users/$userHandle 
+    https -a "$USERS_AUTH" DELETE users.int.${host}/api/users/$userHandle
   fi
 }
 
@@ -230,39 +231,6 @@ function _exa_auth_token() {
     local user=$2
     local password=$3
     https --form POST "auth.${host}/oauth/token" grant_type=password username=${user} password=${password} waipu_device_id="marc-local"
-  fi
-}
-
-function _exa_bwc_customer() {
-  if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 env customer"
-  else
-    local host=$(_exa_host $1)
-    local customer=$2
-    shift 2
-    https -a $BWC_AUTH billwerk-cache-service.$host/api/v1/Customers/$customer $@
-  fi
-}
-
-function _exa_bwc_contract() {
-  if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 env contract"
-  else
-    local host=$(_exa_host $1)
-    local contract=$2
-    shift 2
-    https -a $BWC_AUTH billwerk-cache-service.$host/api/v1/Contracts/$contract$@
-  fi
-}
-
-function _exa_bwc_contract_refresh() {
-  if [[ $# -lt 2 ]]; then
-    echo "Usage: $0 env contract"
-  else
-    local host=$(_exa_host $1)
-    local contract=$2
-    shift 2
-    https -v -a $BWC_AUTH POST "billwerk-cache-service.$host/api/v1/Contracts/$contract/refresh?ensureBillwerkRefresh=true"
   fi
 }
 
@@ -376,7 +344,7 @@ function _exa_dazn_pac_stage() {
 function _exa_tag_deploy() {
   if [[ -z "$1" ]]; then
     echo "Usage: $0 tag-name"
-  else 
+  else
     tag=$1
     git tag $tag && git push origin $tag
   fi
@@ -422,6 +390,9 @@ function _bw_credentials() {
   case $1 in
     "dev")
       echo $BILLWERK_AUTH
+      ;;
+    "preview")
+      echo $BILLWERK_AUTH_PREVIEW
       ;;
     "prod")
       echo $BILLWERK_AUTH_PROD

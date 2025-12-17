@@ -46,19 +46,15 @@ export SPARK_HOME="/Users/marc/.sdkman/candidates/spark/current"
 # ruby
 export RBENV_ROOT=${HOMEBREW_PREFIX}/var/rbenv
 
-# gcloud
-export CLOUDSDK_PYTHON="${HOMEBREW_PREFIX}/bin/python3.8"
-
 # sdkman
 export SDKMAN_DIR="$HOME/.sdkman"
 export SDKMAN_INIT="$SDKMAN_DIR/bin/sdkman-init.sh"
-
 
 # paths
 export SCRIPTS_PATH="/Users/marc/projects/scripts"
 export XCODE_PATH="/Applications/Xcode.app/Contents/Developer/usr/bin"
 
-export PATH="${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${GOPATH}/bin"
+export PATH="${HOME}/.local/bin:${HOME}/bin:${PATH}:${SCRIPTS_PATH}:${XCODE_PATH}:${GOROOT}/bin:${GOPATH}/bin"
 
 export MANPATH="${HOMEBREW_PREFIX}/share/man${MANPATH+:$MANPATH}:"
 export INFOPATH="${HOMEBREW_PREFIX}/share/info:${INFOPATH:-}"
