@@ -116,6 +116,10 @@ alias wow-dev="_exa_int_service dev wow-partner-gateway $WOW_AUTH_DEV"
 alias wow-preview="_exa_int_service preview wow-partner-gateway $WOW_AUTH_PREVIEW"
 alias wow-prod="_exa_int_service prod wow-partner-gateway $WOW_AUTH_PROD"
 
+# dazn
+alias dazn-dev="_exa_int_service dev dazn-partner-gateway $DAZN_AUTH_DEV"
+alias dazn-preview="_exa_int_service preview dazn-partner-gateway $DAZN_AUTH_PREVIEW"
+alias dazn-prod="_exa_int_service prod dazn-partner-gateway $DAZN_AUTH_PROD"
 
 # device-management
 alias device-management-dev="_exa_int_service dev device-management $DM_AUTH"
@@ -334,11 +338,6 @@ function _exa_service() {
     shift 4
     https -a $auth $method $service.$host$@
   fi
-}
-
-
-function _exa_dazn_pac_stage() {
-  http --verbose POST https://partners.ar.dazn-stage.com/v1/public/api/access-codes X-Dazn-Auth-Key:$DAZN_AUTH_STAGE campaignName='DAZN x Waiputvdemn2022'
 }
 
 function _exa_tag_deploy() {
