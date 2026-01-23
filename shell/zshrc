@@ -7,10 +7,7 @@ function source_file() {
   [ -r "$file" ] && . "$file"
 }
 
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
-source_file "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 source_file $ZSH/oh-my-zsh.sh
-source_file $HOME/.p10k.zsh
 source_file $DOTFILES/shell/aliases.sh
 source_file $DOTFILES/shell/aliases.local.sh
 source_file $DOTFILES/shell/functions.sh
@@ -30,8 +27,10 @@ fi
 # volta (must be after homebrew to work)
 [[ -s "$VOLTA_HOME" ]] && export PATH="$VOLTA_HOME/bin:$PATH"
 
+# starship prompt
+eval "$(starship init zsh)"
+
 # SDKMAN (THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!)
 [[ -s "$SDKMAN_INIT" ]] && source "$SDKMAN_INIT"
 
 unset -f source_file
-
