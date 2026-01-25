@@ -4,22 +4,19 @@ format = """
 [](color_orange)\
 $os\
 $username\
+$hostname\
 [](bg:color_yellow fg:color_orange)\
 $directory\
 [](fg:color_yellow bg:color_aqua)\
 $git_branch\
 $git_status\
 [](fg:color_aqua bg:color_blue)\
-$c\
-$cpp\
+$kotlin\
+$java\
+$python\
 $rust\
 $golang\
 $nodejs\
-$php\
-$java\
-$kotlin\
-$haskell\
-$python\
 [](fg:color_blue bg:color_bg3)\
 $docker_context\
 $conda\
@@ -51,7 +48,7 @@ style = "bg:color_orange fg:color_fg0"
 Windows = "󰍲"
 Ubuntu = "󰕈"
 SUSE = ""
-Raspbian = "󰐿"
+Raspbian = ""
 Mint = "󰣭"
 Macos = "󰀵"
 Manjaro = ""
@@ -76,6 +73,10 @@ show_always = false
 style_user = "bg:color_orange fg:color_fg0"
 style_root = "bg:color_orange fg:color_fg0"
 format = '[ $user ]($style)'
+
+[hostname]
+style = "bg:color_orange fg:color_fg0"
+format = "[$ssh_symbol$hostname ]($style)"
 
 [directory]
 style = "fg:color_fg0 bg:color_yellow"
