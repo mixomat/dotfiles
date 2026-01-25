@@ -14,6 +14,11 @@ setup_powerlevel_theme() {
   git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 }
 
+setup_starship_prompt() {
+  curl -sS https://starship.rs/install.sh | sh
+  ln -s ~/dotfiles/shell/starship.toml ~/.config/
+}
+
 # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 main() {
@@ -26,11 +31,11 @@ main() {
     print_warning "Skipping oh-my-zsh installation"
   fi
 
-  ask_for_confirmation "Should I install powerlevel10k?"
+  ask_for_confirmation "Should I install starship.rs?"
   if answer_is_yes; then
-    setup_powerlevel_theme
+    setup_starship_prompt
   else
-    print_warning "Skipping powerlevel10k installation"
+    print_warning "Skipping starship.rs installation"
   fi
 }
 
